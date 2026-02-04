@@ -1,4 +1,7 @@
 package com.theatre.reservation.user;
 
-public class Role {
+public enum Role {
+    SUPER_ADMIN,
+    ADMIN,
+    USER
 }
