@@ -1,4 +1,4 @@
 package com.theatre.reservation.enums;
 
-public class SeatStatus {
+public enum SeatStatus {
 }
