@@ -1,7 +1,7 @@
 package com.theatre.reservation.enums;
 
 public enum Role {
-    SUPER_ADMIN,
-    ADMIN,
-    USER
+    ROLE_USER,
+    ROLE_ADMIN,
+    ROLE_SUPER_ADMIN
 }
