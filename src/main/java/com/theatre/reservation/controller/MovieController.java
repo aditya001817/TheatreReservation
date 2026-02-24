@@ -13,4 +13,9 @@ public class MovieController {
         System.out.println("Getting all movies");
         return  null;
     }
+
+    public ResponseEntity<?> getMovieById(int id) {
+        System.out.println("Getting movie by id: " + id);
+        return  null;
+    }
 }
