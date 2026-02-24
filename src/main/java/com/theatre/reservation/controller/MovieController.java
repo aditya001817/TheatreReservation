@@ -18,4 +18,14 @@ public class MovieController {
         System.out.println("Getting movie by id: " + id);
         return  null;
     }
+
+    public ResponseEntity<?> getMovieByGenre(String genre) {
+        System.out.println("Getting movie by genre: " + genre);
+        return  null;
+    }
+
+    public ResponseEntity<?> getMovieByLanguage(String language) {
+        System.out.println("Getting movie by language: " + language);
+        return  null;
+    }
 }
