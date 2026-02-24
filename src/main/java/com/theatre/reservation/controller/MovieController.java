@@ -1,6 +1,7 @@
 package com.theatre.reservation.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,5 +28,10 @@ public class MovieController {
     public ResponseEntity<?> getMovieByLanguage(String language) {
         System.out.println("Getting movie by language: " + language);
         return  null;
+    }
+
+    public ResponseEntity<?> createMovie() {
+        System.out.println("Creating movie");
+        return null;
     }
 }
