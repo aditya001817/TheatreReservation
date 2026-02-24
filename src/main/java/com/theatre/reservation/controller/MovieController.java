@@ -1,5 +1,6 @@
 package com.theatre.reservation.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -7,4 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/movies")
 
 public class MovieController {
+
+    public ResponseEntity<?> getAllMovies() {
+        System.out.println("Getting all movies");
+        return  null;
+    }
 }
