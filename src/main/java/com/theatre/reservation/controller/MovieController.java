@@ -36,8 +36,18 @@ public class MovieController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createMovie() {
+    public ResponseEntity<?> createNewMovie() {
         System.out.println("Creating movie");
+        return null;
+    }
+
+    public ResponseEntity<?> updateMovieById() {
+        System.out.println("Updating movie");
+        return null;
+    }
+
+    public ResponseEntity<?> deleteMovieById() {
+        System.out.println("Deleting movie");
         return null;
     }
 }
