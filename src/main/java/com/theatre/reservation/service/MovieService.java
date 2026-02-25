@@ -5,7 +5,6 @@ import com.theatre.reservation.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,4 +20,29 @@ public class MovieService {
     public Page<Movie> getAllMovies(int page, int size) {
         return movieRepository.findAll(PageRequest.of(page, size));
     }
+
+    public Movie getMovieById(int id) {
+        System.out.println("Fetching movie with id " + id);
+        return null;
+    }
+
+    public Movie getMovieByGenre(String movieGenre) {
+        System.out.println("Fetching movie by genre " + movieGenre);
+        return null;
+    }
+
+    public Movie getMovieByLanguage(String movieLanguage) {
+        System.out.println("Fetching movie by Language " + movieLanguage);
+        return null;
+    }
+
+    public Movie createNewMovie(Movie movie) {
+        return movieRepository.save(movie);
+    }
+
+    public Movie updateMovie(Movie movie) {
+        System.out.println("Updating movie " + movie);
+        return null;
+    }
+
 }
