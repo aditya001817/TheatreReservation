@@ -12,6 +12,7 @@ public class MovieController {
     @GetMapping("/all")
     public ResponseEntity<?> getAllMovies(@RequestParam(defaultValue = "0") int page,
                                           @RequestParam(defaultValue = "5") int size) {
+
         System.out.println("Getting all movies");
         return  null;
     }
@@ -41,7 +42,7 @@ public class MovieController {
     }
 
     @PutMapping("/movie/update/{id}")
-    public ResponseEntity<?> updateMovieById(@PathVariable long id) {
+    public ResponseEntity<?> updateMovieById(@PathVariable long id, @RequestBody MovieRequestDto movieRequestDto) {
         System.out.println("Updating movie");
         return null;
     }
