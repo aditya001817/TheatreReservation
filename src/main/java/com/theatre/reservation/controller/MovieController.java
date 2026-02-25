@@ -1,6 +1,8 @@
 package com.theatre.reservation.controller;
 
 import com.theatre.reservation.dto.MovieRequestDto;
+import com.theatre.reservation.service.MovieService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,6 +10,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/movies")
 
 public class MovieController {
+
+    private final MovieService movieService;
+
+    @Autowired
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
+    }
 
     @GetMapping("/all")
     public ResponseEntity<?> getAllMovies(@RequestParam(defaultValue = "0") int page,
