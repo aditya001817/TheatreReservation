@@ -40,9 +40,13 @@ public class MovieService {
         return movieRepository.save(movie);
     }
 
-    public Movie updateMovie(Movie movie) {
+    public Movie updateMovieById(long id, Movie movie) {
         System.out.println("Updating movie " + movie);
         return null;
     }
 
+    public void deleteMovieById(long movieId) {
+        System.out.println("Deleting movie " + movieId);
+        movieRepository.deleteById(movieId);
+    }
 }
