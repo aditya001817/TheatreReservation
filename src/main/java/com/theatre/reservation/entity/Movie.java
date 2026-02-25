@@ -1,9 +1,7 @@
 package com.theatre.reservation.entity;
 
 import com.theatre.reservation.enums.MovieGenre;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
@@ -25,6 +23,7 @@ public class Movie {
     long movieId;
     String movieName;
     String movieLanguage;
+    @Enumerated(value = EnumType.STRING)
     List<MovieGenre> movieGenre;
     LocalDate releaseDate;
     int movieLength;
