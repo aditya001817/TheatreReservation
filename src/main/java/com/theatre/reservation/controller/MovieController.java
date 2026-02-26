@@ -46,13 +46,13 @@ public class MovieController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createNewMovie(@RequestBody MovieRequestDto movieRequestDto) {
+    public ResponseEntity<ApiResponseDto> createNewMovie(@RequestBody MovieRequestDto movieRequestDto) {
         System.out.println("Creating movie");
         return null;
     }
 
     @PutMapping("/movie/update/{id}")
-    public ResponseEntity<?> updateMovieById(@PathVariable long id, @RequestBody MovieRequestDto movieRequestDto) {
+    public ResponseEntity<ApiResponseDto> updateMovieById(@PathVariable long id, @RequestBody MovieRequestDto movieRequestDto) {
         System.out.println("Updating movie");
         return null;
     }
