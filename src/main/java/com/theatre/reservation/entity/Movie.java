@@ -3,7 +3,6 @@ package com.theatre.reservation.entity;
 import com.theatre.reservation.enums.MovieGenre;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,6 +22,7 @@ public class Movie {
     long movieId;
     String movieName;
     String movieLanguage;
+
     @Enumerated(value = EnumType.STRING)
     List<MovieGenre> movieGenre;
     LocalDate releaseDate;

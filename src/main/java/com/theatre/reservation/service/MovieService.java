@@ -1,11 +1,15 @@
 package com.theatre.reservation.service;
 
+import com.theatre.reservation.dto.MovieRequestDto;
 import com.theatre.reservation.entity.Movie;
 import com.theatre.reservation.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+
 
 @Service
 public class MovieService {
@@ -36,12 +40,19 @@ public class MovieService {
         return null;
     }
 
-    public Movie createNewMovie(Movie movie) {
+    public Movie createNewMovie(MovieRequestDto movieRequestDto) {
+        Movie movie = Movie.builder()
+                .movieLanguage(movieRequestDto.getMovieLanguage())
+                .movieLength(movieRequestDto.getMovieLength())
+                .movieGenre(movieRequestDto.getMovieGenre())
+                .movieName(movieRequestDto.getMovieName())
+                .releaseDate(LocalDate.parse(movieRequestDto.getReleaseDate()))
+                .build();
         return movieRepository.save(movie);
     }
 
-    public Movie updateMovieById(long id, Movie movie) {
-        System.out.println("Updating movie " + movie);
+    public Movie updateMovieById(long id, MovieRequestDto movieRequestDto) {
+        System.out.println("Updating movie " +movieRequestDto);
         return null;
     }
 
