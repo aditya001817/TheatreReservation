@@ -1,5 +1,6 @@
 package com.theatre.reservation.controller;
 
+import com.theatre.reservation.dto.ApiResponseDto;
 import com.theatre.reservation.dto.MovieRequestDto;
 import com.theatre.reservation.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,19 +28,19 @@ public class MovieController {
     }
 
     @GetMapping("/movie/id/{id}")
-    public ResponseEntity<?> getMovieById(@PathVariable long id) {
+    public ResponseEntity<ApiResponseDto> getMovieById(@PathVariable long id) {
         System.out.println("Getting movie by id: " + id);
         return  null;
     }
 
     @GetMapping("/movie/genre/{genre}")
-    public ResponseEntity<?> getMovieByGenre(@PathVariable String genre) {
+    public ResponseEntity<ApiResponseDto> getMovieByGenre(@PathVariable String genre) {
         System.out.println("Getting movie by genre: " + genre);
         return  null;
     }
 
     @GetMapping("/movie/language/{language}")
-    public ResponseEntity<?> getMovieByLanguage(@PathVariable String language) {
+    public ResponseEntity<ApiResponseDto> getMovieByLanguage(@PathVariable String language) {
         System.out.println("Getting movie by language: " + language);
         return  null;
     }
