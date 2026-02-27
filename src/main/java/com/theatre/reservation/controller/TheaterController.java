@@ -33,4 +33,9 @@ public class TheaterController {
         System.out.println("Updating theater by id"+id);
         return null;
     }
+
+    public ResponseEntity<?> deleteTheaterById(@PathVariable long id) {
+        System.out.println("Deleting theater by id"+id);
+        return null;
+    }
 }
