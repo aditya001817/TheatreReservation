@@ -28,4 +28,9 @@ public class TheaterController {
         System.out.println("Creating theater");
         return null;
     }
+
+    public ResponseEntity<?> updateTheaterById(@PathVariable long id, @RequestBody TheaterRequestDto theaterRequestDto) {
+        System.out.println("Updating theater by id"+id);
+        return null;
+    }
 }
