@@ -13,4 +13,9 @@ public class TheaterController {
         System.out.println("Getting all Theaters");
         return null;
     }
+
+    public ResponseEntity<?> getAllTheaterByLocation(String location) {
+        System.out.println("Getting theater by location"+location);
+        return null;
+    }
 }
