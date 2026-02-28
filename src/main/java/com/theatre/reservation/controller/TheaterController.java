@@ -19,7 +19,9 @@ public class TheaterController {
     }
 
     @GetMapping("/theater/location/{location}")
-    public ResponseEntity<?> getAllTheaterByLocation(@PathVariable String location) {
+    public ResponseEntity<?> getAllTheaterByLocation(@RequestParam(defaultValue = "0") int page,
+                                                     @RequestParam(defaultValue = "3") int size,
+                                                     @PathVariable String location) {
         System.out.println("Getting theater by location"+location);
         return null;
     }
