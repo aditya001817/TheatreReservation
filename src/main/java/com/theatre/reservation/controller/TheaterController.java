@@ -1,6 +1,8 @@
 package com.theatre.reservation.controller;
 
 
+import com.theatre.reservation.dto.ApiResponseDto;
+import com.theatre.reservation.dto.TheaterRequestDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,19 +25,19 @@ public class TheaterController {
     }
 
     @GetMapping("/theater/id/{id}")
-    public ResponseEntity<?> getTheaterById(@PathVariable long theaterId) {
+    public ResponseEntity<ApiResponseDto> getTheaterById(@PathVariable long theaterId) {
         System.out.println("Getting theater by id"+theaterId);
         return null;
     }
 
     @PostMapping("/theater/create")
-    public ResponseEntity<?> createTheater(@RequestBody TheaterRequestDto theaterRequestDto) {
+    public ResponseEntity<ApiResponseDto> createTheater(@RequestBody TheaterRequestDto theaterRequestDto) {
         System.out.println("Creating theater");
         return null;
     }
 
     @PutMapping("/theater/update/{id}")
-    public ResponseEntity<?> updateTheaterById(@PathVariable long id, @RequestBody TheaterRequestDto theaterRequestDto) {
+    public ResponseEntity<ApiResponseDto> updateTheaterById(@PathVariable long id, @RequestBody TheaterRequestDto theaterRequestDto) {
         System.out.println("Updating theater by id"+id);
         return null;
     }
