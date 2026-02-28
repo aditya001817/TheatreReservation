@@ -4,14 +4,12 @@ package com.theatre.reservation.controller;
 import com.theatre.reservation.dto.ApiResponseDto;
 import com.theatre.reservation.dto.TheaterRequestDto;
 import com.theatre.reservation.service.TheaterService;
-import lombok.Getter;
-import lombok.Setter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Setter
-@Getter
+
 @RestController
 @RequestMapping("/api/v1/theaters")
 public class TheaterController {
