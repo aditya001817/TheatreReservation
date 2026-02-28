@@ -22,4 +22,14 @@ public class TheaterService {
         return null;
     }
 
+    public Theater createTheater(Theater theater) {
+        System.out.println("into theater service");
+        return null;
+    }
+
+    public Theater updateTheaterById(long id,  Theater theater) {
+        System.out.println("into theater service");
+        return null;
+    }
+
 }
