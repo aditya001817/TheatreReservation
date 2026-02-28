@@ -32,4 +32,7 @@ public class TheaterService {
         return null;
     }
 
+    public void deleteTheaterById(long id) {
+        System.out.println("into theater service");
+    }
 }
