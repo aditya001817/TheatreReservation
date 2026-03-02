@@ -1,5 +1,6 @@
 package com.theatre.reservation.service;
 
+import com.theatre.reservation.dto.TheaterRequestDto;
 import com.theatre.reservation.entity.Theater;
 import com.theatre.reservation.repository.TheaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class TheaterService {
         return null;
     }
 
-    public Theater createTheater(Theater theater) {
+    public Theater createTheater(TheaterRequestDto theaterRequestDto) {
         System.out.println("into theater service");
         return null;
     }
