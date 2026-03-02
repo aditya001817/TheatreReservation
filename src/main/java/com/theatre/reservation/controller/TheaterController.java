@@ -46,10 +46,6 @@ public class TheaterController {
     @PostMapping("/theater/create")
     public ResponseEntity<ApiResponseDto> createTheater(@RequestBody TheaterRequestDto theaterRequestDto) {
         System.out.println("Creating theater");
-        Theater theater = Theater.builder()
-                .name(theaterRequestDto.getName())
-                .location(theaterRequestDto.getLocation())
-                .build();
         return null;
     }
 
