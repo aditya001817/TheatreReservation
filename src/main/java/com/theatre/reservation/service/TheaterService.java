@@ -2,10 +2,12 @@ package com.theatre.reservation.service;
 
 import com.theatre.reservation.dto.TheaterRequestDto;
 import com.theatre.reservation.entity.Theater;
+import com.theatre.reservation.exception.TheaterNotFoundException;
 import com.theatre.reservation.repository.TheaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,19 +22,18 @@ public class TheaterService {
 
     public Page<Theater> getAllTheaters(int page, int size) {
         System.out.println("into theater service");
-        theaterRepository.findAll(PageRequest.of(page, size));
-        return null;
+        return theaterRepository.findAll(PageRequest.of(page, size));
     }
 
     public Page<Theater> getAllTheaterByLocation(String location, int page, int size) {
         System.out.println("into theater service");
-        theaterRepository.findAllByLocation(location, PageRequest.of(page, size));
-        return null;
+        return theaterRepository.findAllByLocation(location, PageRequest.of(page, size));
     }
 
-    public Theater getTheaterById(long id) {
+    public Theater getTheaterById(long theaterId) {
         System.out.println("into theater service");
-        return null;
+        return theaterRepository.findAllById(theaterId)
+                .orElseThrow(() -> new TheaterNotFoundException("THEATER_NOT_FOUND", HttpStatus.NOT_FOUND));
     }
 
     public Theater createTheater(TheaterRequestDto theaterRequestDto) {
@@ -41,7 +42,7 @@ public class TheaterService {
                 .name(theaterRequestDto.getName())
                 .location(theaterRequestDto.getLocation())
                 .build();
-        return null;
+        return theaterRepository.save(theater);
     }
 
     public Theater updateTheaterById(long id,  Theater theater) {
