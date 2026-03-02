@@ -34,6 +34,10 @@ public class TheaterService {
 
     public Theater createTheater(TheaterRequestDto theaterRequestDto) {
         System.out.println("into theater service");
+        Theater theater = Theater.builder()
+                .name(theaterRequestDto.getName())
+                .location(theaterRequestDto.getLocation())
+                .build();
         return null;
     }
 
