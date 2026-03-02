@@ -26,6 +26,7 @@ public class TheaterService {
 
     public Page<Theater> getAllTheaterByLocation(String location, int page, int size) {
         System.out.println("into theater service");
+        theaterRepository.findAllByLocation(location, PageRequest.of(page, size));
         return null;
     }
 
