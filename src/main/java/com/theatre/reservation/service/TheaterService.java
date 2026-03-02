@@ -5,6 +5,7 @@ import com.theatre.reservation.entity.Theater;
 import com.theatre.reservation.repository.TheaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,6 +20,7 @@ public class TheaterService {
 
     public Page<Theater> getAllTheaters(int page, int size) {
         System.out.println("into theater service");
+        theaterRepository.findAll(PageRequest.of(page, size));
         return null;
     }
 

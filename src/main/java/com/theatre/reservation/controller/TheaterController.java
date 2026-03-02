@@ -22,14 +22,14 @@ public class TheaterController {
         this.theaterService = theaterService;
     }
 
-    @GetMapping("/theater/all")
+    @GetMapping("/all")
     public ResponseEntity<?> getAllTheaters(@RequestParam(defaultValue = "0") int page,
                                             @RequestParam(defaultValue = "3") int size) {
         System.out.println("Getting all Theaters");
         return null;
     }
 
-    @GetMapping("/theater/location/{location}")
+    @GetMapping("/theater/{location}")
     public ResponseEntity<?> getAllTheaterByLocation(@RequestParam(defaultValue = "0") int page,
                                                      @RequestParam(defaultValue = "3") int size,
                                                      @PathVariable String location) {
@@ -37,13 +37,13 @@ public class TheaterController {
         return null;
     }
 
-    @GetMapping("/theater/id/{id}")
+    @GetMapping("/theater/{id}")
     public ResponseEntity<ApiResponseDto> getTheaterById(@PathVariable long theaterId) {
         System.out.println("Getting theater by id"+theaterId);
         return null;
     }
 
-    @PostMapping("/theater/create")
+    @PostMapping("/create")
     public ResponseEntity<ApiResponseDto> createTheater(@RequestBody TheaterRequestDto theaterRequestDto) {
         System.out.println("Creating theater");
         return null;
