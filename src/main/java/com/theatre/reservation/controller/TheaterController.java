@@ -49,13 +49,13 @@ public class TheaterController {
         return null;
     }
 
-    @PutMapping("/theater/update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<ApiResponseDto> updateTheaterById(@PathVariable long id, @RequestBody TheaterRequestDto theaterRequestDto) {
         System.out.println("Updating theater by id"+id);
         return null;
     }
 
-    @DeleteMapping("/theater/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteTheaterById(@PathVariable long id) {
         System.out.println("Deleting theater by id"+id);
         return null;

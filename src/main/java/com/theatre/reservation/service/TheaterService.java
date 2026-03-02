@@ -32,8 +32,9 @@ public class TheaterService {
 
     public Theater getTheaterById(long theaterId) {
         System.out.println("into theater service");
-        return theaterRepository.findAllById(theaterId)
-                .orElseThrow(() -> new TheaterNotFoundException("THEATER_NOT_FOUND", HttpStatus.NOT_FOUND));
+//        Theater theater = theaterRepository.findById(theaterId);
+//                .orElseThrow(TheaterNotFoundException());
+        return null;
     }
 
     public Theater createTheater(TheaterRequestDto theaterRequestDto) {
@@ -45,12 +46,13 @@ public class TheaterService {
         return theaterRepository.save(theater);
     }
 
-    public Theater updateTheaterById(long id,  Theater theater) {
+    public Theater updateTheaterById(long theaterId,  Theater theater) {
         System.out.println("into theater service");
         return null;
     }
 
-    public void deleteTheaterById(long id) {
+    public void deleteTheaterById(long theaterId) {
         System.out.println("into theater service");
+        theaterRepository.deleteById(theaterId);
     }
 }
