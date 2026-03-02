@@ -3,6 +3,7 @@ package com.theatre.reservation.controller;
 
 import com.theatre.reservation.dto.ApiResponseDto;
 import com.theatre.reservation.dto.TheaterRequestDto;
+import com.theatre.reservation.entity.Theater;
 import com.theatre.reservation.service.TheaterService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,10 @@ public class TheaterController {
     @PostMapping("/theater/create")
     public ResponseEntity<ApiResponseDto> createTheater(@RequestBody TheaterRequestDto theaterRequestDto) {
         System.out.println("Creating theater");
+        Theater theater = Theater.builder()
+                .name(theaterRequestDto.getName())
+                .location(theaterRequestDto.getLocation())
+                .build();
         return null;
     }
 
