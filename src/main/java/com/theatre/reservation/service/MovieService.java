@@ -25,7 +25,7 @@ public class MovieService {
         return movieRepository.findAll(PageRequest.of(page, size));
     }
 
-    public Movie getMovieById(int id) {
+    public Movie getMovieById(long id) {
         System.out.println("Fetching movie with id " + id);
         return null;
     }

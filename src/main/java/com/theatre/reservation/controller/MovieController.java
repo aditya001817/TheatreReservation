@@ -32,7 +32,13 @@ public class MovieController {
     @GetMapping("/movie/id/{id}")
     public ResponseEntity<ApiResponseDto> getMovieById(@PathVariable long id) {
         System.out.println("Getting movie by id: " + id);
-        return  null;
+        Movie movie = movieService.getMovieById(id);
+        return  ResponseEntity.ok(
+                ApiResponseDto.builder()
+                        .message("Fetching movie with id "+id)
+                        .data(movie)
+                        .build()
+        );
     }
 
     @GetMapping("/movie/genre/{genre}")
@@ -44,7 +50,13 @@ public class MovieController {
     @GetMapping("/movie/language/{language}")
     public ResponseEntity<ApiResponseDto> getMovieByLanguage(@PathVariable String language) {
         System.out.println("Getting movie by language: " + language);
-        return  null;
+        Movie movie = movieService.getMovieByLanguage(language);
+        return  ResponseEntity.ok(
+                ApiResponseDto.builder()
+                        .message("Fetching movie with language "+language)
+                        .data(movie).
+                        build()
+        );
     }
 
     @PostMapping("/create")
@@ -78,6 +90,9 @@ public class MovieController {
     @DeleteMapping("/movie/delete/{id}")
     public ResponseEntity<?> deleteMovieById(@PathVariable long movieId) {
         System.out.println("Deleting movie");
-        return null;
+        movieService.deleteMovieById(movieId);
+        return ResponseEntity
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 }
