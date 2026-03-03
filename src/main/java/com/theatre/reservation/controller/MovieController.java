@@ -2,8 +2,10 @@ package com.theatre.reservation.controller;
 
 import com.theatre.reservation.dto.ApiResponseDto;
 import com.theatre.reservation.dto.MovieRequestDto;
+import com.theatre.reservation.entity.Movie;
 import com.theatre.reservation.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,14 +50,29 @@ public class MovieController {
     @PostMapping("/create")
     public ResponseEntity<ApiResponseDto> createNewMovie(@RequestBody MovieRequestDto movieRequestDto) {
         System.out.println("Creating movie");
-        movieService.createNewMovie(movieRequestDto);
-        return null;
+        Movie movie = movieService.createNewMovie(movieRequestDto);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(
+                        ApiResponseDto.builder()
+                                .message("Movie created")
+                                .data(movie)
+                                .build()
+                );
     }
 
     @PutMapping("/movie/update/{id}")
     public ResponseEntity<ApiResponseDto> updateMovieById(@PathVariable long id, @RequestBody MovieRequestDto movieRequestDto) {
         System.out.println("Updating movie");
-        return null;
+        Movie movie = movieService.updateMovieById(id, movieRequestDto);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(
+                        ApiResponseDto.builder()
+                                .message("Updated movie")
+                                .data(movie)
+                                .build()
+                );
     }
 
     @DeleteMapping("/movie/delete/{id}")

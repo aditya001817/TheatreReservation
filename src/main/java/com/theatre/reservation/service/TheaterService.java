@@ -50,6 +50,7 @@ public class TheaterService {
 
     public Theater updateTheaterById(long theaterId,  Theater theater) {
         System.out.println("into theater service");
+//        theaterRepository.
         return null;
     }
 
