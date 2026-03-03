@@ -2,6 +2,7 @@ package com.theatre.reservation.service;
 
 import com.theatre.reservation.dto.MovieRequestDto;
 import com.theatre.reservation.entity.Movie;
+import com.theatre.reservation.enums.MovieGenre;
 import com.theatre.reservation.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,6 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 
 @Service
@@ -27,7 +30,8 @@ public class MovieService {
 
     public Movie getMovieById(long id) {
         System.out.println("Fetching movie with id " + id);
-        return null;
+        return movieRepository.findById(id)
+                .orElseThrow(null);
     }
 
     public Movie getMovieByGenre(String movieGenre) {
@@ -37,6 +41,7 @@ public class MovieService {
 
     public Movie getMovieByLanguage(String movieLanguage) {
         System.out.println("Fetching movie by Language " + movieLanguage);
+
         return null;
     }
 
@@ -53,9 +58,19 @@ public class MovieService {
         return movie;
     }
 
-    public Movie updateMovieById(long id, MovieRequestDto movieRequestDto) {
+    public Movie updateMovieById(long movieId, MovieRequestDto movieRequestDto) {
         System.out.println("Updating movie " +movieRequestDto);
-        return null;
+        return movieRepository.findById(movieId)
+                .map(movieInDb -> {
+                    movieInDb.setMovieName(movieRequestDto.getMovieName());
+                    movieInDb.setReleaseDate(LocalDate.parse(movieRequestDto.getReleaseDate()));
+                    movieInDb.setMovieLanguage(movieRequestDto.getMovieLanguage());
+                    movieInDb.setMovieLength(movieRequestDto.getMovieLength());
+                    movieInDb.setMovieGenre(movieRequestDto.getMovieGenre());
+
+                    return movieRepository.save(movieInDb);
+                })
+                .orElse(null);
     }
 
     public void deleteMovieById(long movieId) {
