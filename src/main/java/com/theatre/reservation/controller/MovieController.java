@@ -44,7 +44,13 @@ public class MovieController {
     @GetMapping("/movie/genre/{genre}")
     public ResponseEntity<ApiResponseDto> getMovieByGenre(@PathVariable String genre) {
         System.out.println("Getting movie by genre: " + genre);
-        return  null;
+        Movie movie = movieService.getMovieByGenre(genre);
+        return  ResponseEntity.ok(
+                ApiResponseDto.builder()
+                        .message("Fetching movies with genre "+genre)
+                        .data(movie)
+                        .build()
+        );
     }
 
     @GetMapping("/movie/language/{language}")
