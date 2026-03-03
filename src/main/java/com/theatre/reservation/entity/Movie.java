@@ -23,7 +23,8 @@ public class Movie {
     String movieName;
     String movieLanguage;
 
-    @Enumerated(value = EnumType.STRING)
+    @ElementCollection
+    @Enumerated(EnumType.STRING)
     List<MovieGenre> movieGenre;
     LocalDate releaseDate;
     int movieLength;

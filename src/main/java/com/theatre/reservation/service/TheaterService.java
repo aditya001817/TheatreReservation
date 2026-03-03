@@ -43,7 +43,9 @@ public class TheaterService {
                 .name(theaterRequestDto.getName())
                 .location(theaterRequestDto.getLocation())
                 .build();
-        return theaterRepository.save(theater);
+        theaterRepository.save(theater);
+        System.out.println("theater created with id " + theater.getId());
+        return theater;
     }
 
     public Theater updateTheaterById(long theaterId,  Theater theater) {

@@ -48,7 +48,9 @@ public class MovieService {
                 .movieName(movieRequestDto.getMovieName())
                 .releaseDate(LocalDate.parse(movieRequestDto.getReleaseDate()))
                 .build();
-        return movieRepository.save(movie);
+        movieRepository.save(movie);
+        System.out.println("Saved movie id " + movie.getMovieId());
+        return movie;
     }
 
     public Movie updateMovieById(long id, MovieRequestDto movieRequestDto) {

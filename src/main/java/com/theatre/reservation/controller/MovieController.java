@@ -48,6 +48,7 @@ public class MovieController {
     @PostMapping("/create")
     public ResponseEntity<ApiResponseDto> createNewMovie(@RequestBody MovieRequestDto movieRequestDto) {
         System.out.println("Creating movie");
+        movieService.createNewMovie(movieRequestDto);
         return null;
     }
 
