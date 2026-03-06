@@ -44,7 +44,7 @@ public class MovieService {
 
     public Movie getMovieByLanguage(String movieLanguage) {
         System.out.println("Fetching movie by Language " + movieLanguage);
-        return movieRepository.findByLanguage(movieLanguage);
+        return movieRepository.findByMovieLanguage(movieLanguage);
     }
 
     public Movie createNewMovie(MovieRequestDto movieRequestDto) {

@@ -26,7 +26,7 @@ public class MovieController {
                                           @RequestParam(defaultValue = "5") int size) {
 
         System.out.println("Getting all movies");
-        movieService.getAllMovies(page, size);
+//        return (ResponseEntity<?>) movieService.getAllMovies(page, size);
         return  null;
     }
 
@@ -45,13 +45,14 @@ public class MovieController {
     @GetMapping("/movie/genre/{genre}")
     public ResponseEntity<ApiResponseDto> getMovieByGenre(@PathVariable String genre) {
         System.out.println("Getting movie by genre: " + genre);
-        Movie movie = movieService.getMovieByGenre(genre);
-        return  ResponseEntity.ok(
-                ApiResponseDto.builder()
-                        .message("Fetching movies with genre "+genre)
-                        .data(movie)
-                        .build()
-        );
+//        Movie movie = movieService.getMovieByGenre(genre);
+//        return  ResponseEntity.ok(
+//                ApiResponseDto.builder()
+//                        .message("Fetching movies with genre "+genre)
+//                        .data(movie)
+//                        .build()
+//        );
+        return null;
     }
 
     @GetMapping("/movie/language/{language}")
