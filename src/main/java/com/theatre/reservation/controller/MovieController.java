@@ -3,6 +3,7 @@ package com.theatre.reservation.controller;
 import com.theatre.reservation.dto.ApiResponseDto;
 import com.theatre.reservation.dto.MovieRequestDto;
 import com.theatre.reservation.entity.Movie;
+import com.theatre.reservation.enums.MovieGenre;
 import com.theatre.reservation.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,16 +44,16 @@ public class MovieController {
     }
 
     @GetMapping("/movie/genre/{genre}")
-    public ResponseEntity<ApiResponseDto> getMovieByGenre(@PathVariable String genre) {
-        System.out.println("Getting movie by genre: " + genre);
-//        Movie movie = movieService.getMovieByGenre(genre);
-//        return  ResponseEntity.ok(
-//                ApiResponseDto.builder()
-//                        .message("Fetching movies with genre "+genre)
-//                        .data(movie)
-//                        .build()
-//        );
-        return null;
+    public ResponseEntity<ApiResponseDto> getMovieByGenre(@PathVariable MovieGenre movieGenre) {
+        System.out.println("Getting movie by genre: " + movieGenre);
+        Movie movie = movieService.getMovieByGenre(movieGenre);
+        return  ResponseEntity.ok(
+                ApiResponseDto.builder()
+                        .message("Fetching movies with genre "+movieGenre)
+                        .data(movie)
+                        .build()
+        );
+//        return null;
     }
 
     @GetMapping("/movie/language/{language}")

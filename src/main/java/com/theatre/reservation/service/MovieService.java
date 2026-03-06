@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
@@ -34,10 +35,10 @@ public class MovieService {
                 .orElseThrow(null);
     }
 
-    public Movie getMovieByGenre(String movieGenre) {
+    public List<Movie> getMovieByGenre(MovieGenre movieGenre) {
         System.out.println("Fetching movie by genre " + movieGenre);
-//        return movieRepository.findByGenre(movieGenre);
-        return null;
+        return movieRepository.findByMovieGenre(movieGenre);
+//        return null;
     }
 
 
