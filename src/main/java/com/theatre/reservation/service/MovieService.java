@@ -36,8 +36,11 @@ public class MovieService {
 
     public Movie getMovieByGenre(String movieGenre) {
         System.out.println("Fetching movie by genre " + movieGenre);
-        return movieRepository.findByGenre(movieGenre);
+//        return movieRepository.findByGenre(movieGenre);
+        return null;
     }
+
+
 
     public Movie getMovieByLanguage(String movieLanguage) {
         System.out.println("Fetching movie by Language " + movieLanguage);

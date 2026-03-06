@@ -26,6 +26,7 @@ public class MovieController {
                                           @RequestParam(defaultValue = "5") int size) {
 
         System.out.println("Getting all movies");
+        movieService.getAllMovies(page, size);
         return  null;
     }
 
