@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/movies")
 
@@ -43,10 +45,10 @@ public class MovieController {
         );
     }
 
-    @GetMapping("/movie/genre/{genre}")
-    public ResponseEntity<ApiResponseDto> getMovieByGenre(@PathVariable MovieGenre movieGenre) {
+    @GetMapping("/movie/genre/{movieGenre}")
+    public ResponseEntity<ApiResponseDto> getMovieByGenre(@PathVariable("genre") MovieGenre movieGenre) {
         System.out.println("Getting movie by genre: " + movieGenre);
-        Movie movie = movieService.getMovieByGenre(movieGenre);
+        List<Movie> movie = movieService.getMovieByGenre(movieGenre);
         return  ResponseEntity.ok(
                 ApiResponseDto.builder()
                         .message("Fetching movies with genre "+movieGenre)
