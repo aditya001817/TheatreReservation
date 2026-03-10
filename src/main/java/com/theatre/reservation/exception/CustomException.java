@@ -1,7 +1,9 @@
 package com.theatre.reservation.exception;
 
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 
+@Data
 public class CustomException {
 
     String message;
