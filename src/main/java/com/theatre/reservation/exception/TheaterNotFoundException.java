@@ -6,6 +6,6 @@ import org.springframework.jdbc.support.CustomSQLExceptionTranslatorRegistrar;
 public class TheaterNotFoundException extends CustomException {
 
     public TheaterNotFoundException(String msg, HttpStatus status) {
-//        super(msg, status);
+        super(msg, status);
     }
 }
