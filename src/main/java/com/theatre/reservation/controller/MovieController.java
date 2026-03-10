@@ -47,28 +47,33 @@ public class MovieController {
     }
 
     @GetMapping("/movie/genre/{movieGenre}")
-    public ResponseEntity<PagedApiResponseDto> getAllMovieByGenre(@PathVariable("genre") MovieGenre movieGenre) {
+    public ResponseEntity<PagedApiResponseDto> getAllMovieByGenre(@RequestParam(defaultValue = "0") int page,
+                                                                  @RequestParam(defaultValue = "5") int size,
+                                                                  @PathVariable MovieGenre movieGenre) {
         System.out.println("Getting movie by genre: " + movieGenre);
         List<Movie> movie = movieService.getAllMovieByGenre(movieGenre);
-        return  ResponseEntity.ok(
-                ApiResponseDto.builder()
-                        .message("Fetching movies with genre "+movieGenre)
-                        .data(movie)
-                        .build()
-        );
-//        return null;
+//        return  ResponseEntity.ok(
+//                ApiResponseDto.builder()
+//                        .message("Fetching movies with genre "+movieGenre)
+//                        .data(movie)
+//                        .build()
+//        );
+        return null;
     }
 
     @GetMapping("/movie/language/{language}")
-    public ResponseEntity<PagedApiResponseDto> getAllMovieByLanguage(@PathVariable String language) {
+    public ResponseEntity<PagedApiResponseDto> getAllMovieByLanguage(@RequestParam(defaultValue = "0") int page,
+                                                                     @RequestParam(defaultValue = "5") int size,
+                                                                     @PathVariable String language) {
         System.out.println("Getting movie by language: " + language);
         Movie movie = movieService.getAllMovieByLanguage(language);
-        return  ResponseEntity.ok(
-                ApiResponseDto.builder()
-                        .message("Fetching movie with language "+language)
-                        .data(movie).
-                        build()
-        );
+//        return  ResponseEntity.ok(
+//                ApiResponseDto.builder()
+//                        .message("Fetching movie with language "+language)
+//                        .data(movie).
+//                        build()
+//        );
+        return null;
     }
 
     @PostMapping("/create")
