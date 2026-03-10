@@ -2,6 +2,7 @@ package com.theatre.reservation.controller;
 
 import com.theatre.reservation.dto.ApiResponseDto;
 import com.theatre.reservation.dto.MovieRequestDto;
+import com.theatre.reservation.dto.PagedApiResponseDto;
 import com.theatre.reservation.entity.Movie;
 import com.theatre.reservation.enums.MovieGenre;
 import com.theatre.reservation.service.MovieService;
@@ -26,7 +27,7 @@ public class MovieController {
 
     @GetMapping("/all")
     public ResponseEntity<PagedApiResponseDto> getAllMovies(@RequestParam(defaultValue = "0") int page,
-                                          @RequestParam(defaultValue = "5") int size) {
+                                                            @RequestParam(defaultValue = "5") int size) {
 
         System.out.println("Getting all movies");
 //        return (ResponseEntity<?>) movieService.getAllMovies(page, size);
@@ -46,7 +47,7 @@ public class MovieController {
     }
 
     @GetMapping("/movie/genre/{movieGenre}")
-    public ResponseEntity<ApiResponseDto> getMovieByGenre(@PathVariable("genre") MovieGenre movieGenre) {
+    public ResponseEntity<PagedApiResponseDto> getAllMovieByGenre(@PathVariable("genre") MovieGenre movieGenre) {
         System.out.println("Getting movie by genre: " + movieGenre);
         List<Movie> movie = movieService.getMovieByGenre(movieGenre);
         return  ResponseEntity.ok(
