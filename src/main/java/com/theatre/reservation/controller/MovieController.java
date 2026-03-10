@@ -25,7 +25,7 @@ public class MovieController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> getAllMovies(@RequestParam(defaultValue = "0") int page,
+    public ResponseEntity<PagedApiResponseDto> getAllMovies(@RequestParam(defaultValue = "0") int page,
                                           @RequestParam(defaultValue = "5") int size) {
 
         System.out.println("Getting all movies");
@@ -59,7 +59,7 @@ public class MovieController {
     }
 
     @GetMapping("/movie/language/{language}")
-    public ResponseEntity<ApiResponseDto> getMovieByLanguage(@PathVariable String language) {
+    public ResponseEntity<PagedApiResponseDto> getAllMovieByLanguage(@PathVariable String language) {
         System.out.println("Getting movie by language: " + language);
         Movie movie = movieService.getMovieByLanguage(language);
         return  ResponseEntity.ok(
