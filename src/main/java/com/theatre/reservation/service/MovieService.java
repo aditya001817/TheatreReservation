@@ -35,7 +35,7 @@ public class MovieService {
                 .orElseThrow(null);
     }
 
-    public List<Movie> getMovieByGenre(MovieGenre movieGenre) {
+    public List<Movie> getAllMovieByGenre(MovieGenre movieGenre) {
         System.out.println("Fetching movie by genre " + movieGenre);
         return movieRepository.findByMovieGenre(movieGenre);
 //        return null;
@@ -43,7 +43,7 @@ public class MovieService {
 
 
 
-    public Movie getMovieByLanguage(String movieLanguage) {
+    public Movie getAllMovieByLanguage(String movieLanguage) {
         System.out.println("Fetching movie by Language " + movieLanguage);
         return movieRepository.findByMovieLanguage(movieLanguage);
     }

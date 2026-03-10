@@ -49,7 +49,7 @@ public class MovieController {
     @GetMapping("/movie/genre/{movieGenre}")
     public ResponseEntity<PagedApiResponseDto> getAllMovieByGenre(@PathVariable("genre") MovieGenre movieGenre) {
         System.out.println("Getting movie by genre: " + movieGenre);
-        List<Movie> movie = movieService.getMovieByGenre(movieGenre);
+        List<Movie> movie = movieService.getAllMovieByGenre(movieGenre);
         return  ResponseEntity.ok(
                 ApiResponseDto.builder()
                         .message("Fetching movies with genre "+movieGenre)
@@ -62,7 +62,7 @@ public class MovieController {
     @GetMapping("/movie/language/{language}")
     public ResponseEntity<PagedApiResponseDto> getAllMovieByLanguage(@PathVariable String language) {
         System.out.println("Getting movie by language: " + language);
-        Movie movie = movieService.getMovieByLanguage(language);
+        Movie movie = movieService.getAllMovieByLanguage(language);
         return  ResponseEntity.ok(
                 ApiResponseDto.builder()
                         .message("Fetching movie with language "+language)
