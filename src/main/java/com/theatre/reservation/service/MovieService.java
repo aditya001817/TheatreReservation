@@ -3,15 +3,18 @@ package com.theatre.reservation.service;
 import com.theatre.reservation.dto.MovieRequestDto;
 import com.theatre.reservation.entity.Movie;
 import com.theatre.reservation.enums.MovieGenre;
+import com.theatre.reservation.exception.MovieNotFoundException;
 import com.theatre.reservation.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import static com.theatre.reservation.constant.ExceptionMessages.MOVIE_NOT_FOUND;
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 
@@ -73,7 +76,7 @@ public class MovieService {
 
                     return movieRepository.save(movieInDb);
                 })
-                .orElse(null);
+                .orElseThrow(() -> new MovieNotFoundException(MOVIE_NOT_FOUND, HttpStatus.NOT_FOUND));
     }
 
     public void deleteMovieById(long movieId) {

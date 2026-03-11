@@ -10,6 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import static com.theatre.reservation.constant.ExceptionMessages.THEATER_NOT_FOUND;
+
 @Service
 public class TheaterService {
 
@@ -57,7 +59,7 @@ public class TheaterService {
                     theaterInDb.setLocation(theater.getLocation());
                     return theaterRepository.save(theaterInDb);
                 })
-                .orElse(new TheaterNotFoundException(THEATER_NOT_FOUND, HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new TheaterNotFoundException(THEATER_NOT_FOUND, HttpStatus.NOT_FOUND));
     }
 
     public void deleteTheaterById(long theaterId) {
