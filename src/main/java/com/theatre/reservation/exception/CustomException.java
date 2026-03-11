@@ -4,13 +4,13 @@ import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 @Data
-public class CustomException {
+public class CustomException extends RuntimeException{
 
     String message;
-    HttpStatus status;
+    HttpStatus httpStatus;
 
     public CustomException(String message, HttpStatus status) {
         this.message = message;
-        this.status = status;
+        this.httpStatus = status;
     }
 }
