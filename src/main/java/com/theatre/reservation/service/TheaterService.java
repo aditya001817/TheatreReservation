@@ -51,7 +51,13 @@ public class TheaterService {
     public Theater updateTheaterById(long theaterId,  Theater theater) {
         System.out.println("into theater service");
 //        theaterRepository.
-        return null;
+        return theaterRepository.findById(theaterId)
+                .map(theaterInDb -> {
+                    theaterInDb.setName(theater.getName());
+                    theaterInDb.setLocation(theater.getLocation());
+                    return theaterRepository.save(theaterInDb);
+                })
+                .orElse(new TheaterNotFoundException(THEATER_NOT_FOUND, HttpStatus.NOT_FOUND));
     }
 
     public void deleteTheaterById(long theaterId) {
