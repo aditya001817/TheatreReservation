@@ -7,6 +7,7 @@ import com.theatre.reservation.entity.Movie;
 import com.theatre.reservation.enums.MovieGenre;
 import com.theatre.reservation.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +31,15 @@ public class MovieController {
                                                             @RequestParam(defaultValue = "5") int size) {
 
         System.out.println("Getting all movies");
-//        return (ResponseEntity<?>) movieService.getAllMovies(page, size);
-        return  null;
+        Page<Movie> pageMovie = movieService.getAllMovies(page, size);
+        List<Movie> movies = pageMovie.getContent();
+        return ResponseEntity.ok(
+                PagedApiResponseDto.builder()
+                        .totalPages(pageMovie.getTotalPages())
+                        .totalElements(pageMovie.getTotalElements())
+                        .currentPageData(movies)
+                        .build()
+                        );
     }
 
     @GetMapping("/movie/{id}")
