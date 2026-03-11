@@ -34,7 +34,7 @@ public class MovieController {
         return  null;
     }
 
-    @GetMapping("/movie/id/{id}")
+    @GetMapping("/movie/{id}")
     public ResponseEntity<ApiResponseDto> getMovieById(@PathVariable long id) {
         System.out.println("Getting movie by id: " + id);
         Movie movie = movieService.getMovieById(id);
@@ -46,7 +46,7 @@ public class MovieController {
         );
     }
 
-    @GetMapping("/movie/genre/{movieGenre}")
+    @GetMapping("/movie/{movieGenre}")
     public ResponseEntity<PagedApiResponseDto> getAllMovieByGenre(@RequestParam(defaultValue = "0") int page,
                                                                   @RequestParam(defaultValue = "5") int size,
                                                                   @PathVariable MovieGenre movieGenre) {
@@ -61,7 +61,7 @@ public class MovieController {
         return null;
     }
 
-    @GetMapping("/movie/language/{language}")
+    @GetMapping("/movie/{language}")
     public ResponseEntity<PagedApiResponseDto> getAllMovieByLanguage(@RequestParam(defaultValue = "0") int page,
                                                                      @RequestParam(defaultValue = "5") int size,
                                                                      @PathVariable String language) {
