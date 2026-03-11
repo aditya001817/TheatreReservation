@@ -1,5 +1,6 @@
 package com.theatre.reservation.entity;
 
+import com.theatre.reservation.enums.SeatStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,4 +22,5 @@ public class Seat {
 
     int seatNumber;
     SeatStatus seatStatus;
+    double price;
 }
