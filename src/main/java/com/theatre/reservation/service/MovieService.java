@@ -15,8 +15,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static com.theatre.reservation.constant.ExceptionMessages.MOVIE_NOT_FOUND;
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
-
 
 @Service
 public class MovieService {
@@ -38,17 +36,19 @@ public class MovieService {
                 .orElseThrow(null);
     }
 
-    public List<Movie> getAllMovieByGenre(MovieGenre movieGenre) {
+    public List<Movie> getAllMovieByGenre(int page, int size, MovieGenre movieGenre) {
         System.out.println("Fetching movie by genre " + movieGenre);
-        return movieRepository.findByMovieGenre(movieGenre);
-//        return null;
+        Page<Movie> moviePage = movieRepository.findAllByMovieGenre(movieGenre, PageRequest.of(page, size));
+        List<Movie> movies = moviePage.getContent();
+        return movies;
     }
 
 
 
-    public Movie getAllMovieByLanguage(String movieLanguage) {
+    public List<Movie> getAllMovieByLanguage(int page, int size, String movieLanguage) {
         System.out.println("Fetching movie by Language " + movieLanguage);
-        return movieRepository.findByMovieLanguage(movieLanguage);
+
+        return movies;
     }
 
     public Movie createNewMovie(MovieRequestDto movieRequestDto) {

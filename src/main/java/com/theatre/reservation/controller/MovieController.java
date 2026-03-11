@@ -59,7 +59,7 @@ public class MovieController {
                                                                   @RequestParam(defaultValue = "5") int size,
                                                                   @PathVariable MovieGenre movieGenre) {
         System.out.println("Getting movie by genre: " + movieGenre);
-        List<Movie> movie = movieService.getAllMovieByGenre(movieGenre);
+        Page<Movie> moviePage = movieService.getAllMovieByGenre(page, size, movieGenre);
 //        return  ResponseEntity.ok(
 //                ApiResponseDto.builder()
 //                        .message("Fetching movies with genre "+movieGenre)
@@ -74,14 +74,15 @@ public class MovieController {
                                                                      @RequestParam(defaultValue = "5") int size,
                                                                      @PathVariable String language) {
         System.out.println("Getting movie by language: " + language);
-        Movie movie = movieService.getAllMovieByLanguage(language);
-//        return  ResponseEntity.ok(
-//                ApiResponseDto.builder()
-//                        .message("Fetching movie with language "+language)
-//                        .data(movie).
-//                        build()
-//        );
-        return null;
+        Page<Movie> moviePage = movieService.getAllMovieByLanguage(page, size, language);
+        List<Movie> movies = moviePage.getContent();
+        return ResponseEntity.ok(
+                PagedApiResponseDto.builder()
+                        .totalPages(moviePage.getTotalPages())
+                        .totalElements(moviePage.getTotalElements())
+                        .currentPageData(movies)
+                        .build()
+        );
     }
 
     @PostMapping("/create")
