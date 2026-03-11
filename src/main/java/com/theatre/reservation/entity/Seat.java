@@ -20,4 +20,5 @@ public class Seat {
     long id;
 
     int seatNumber;
+    SeatStatus seatStatus;
 }
