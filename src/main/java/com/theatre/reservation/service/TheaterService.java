@@ -15,7 +15,7 @@ import static com.theatre.reservation.constant.ExceptionMessages.THEATER_NOT_FOU
 @Service
 public class TheaterService {
 
-    private TheaterRepository theaterRepository;
+    private final TheaterRepository theaterRepository;
 
     @Autowired
     public TheaterService(TheaterRepository theaterRepository) {
@@ -34,12 +34,11 @@ public class TheaterService {
 
     public Theater getTheaterById(long theaterId) {
         System.out.println("into theater service");
-//        Theater theater = theaterRepository.findById(theaterId);
-//                .orElseThrow(TheaterNotFoundException());
-        return null;
+        return theaterRepository.findById(theaterId)
+                .orElseThrow(() -> new TheaterNotFoundException(THEATER_NOT_FOUND, HttpStatus.NOT_FOUND));
     }
 
-    public Theater createTheater(TheaterRequestDto theaterRequestDto) {
+    public void createTheater(TheaterRequestDto theaterRequestDto) {
         System.out.println("into theater service");
         Theater theater = Theater.builder()
                 .name(theaterRequestDto.getName())
@@ -47,12 +46,10 @@ public class TheaterService {
                 .build();
         theaterRepository.save(theater);
         System.out.println("theater created with id " + theater.getId());
-        return theater;
     }
 
     public Theater updateTheaterById(long theaterId,  Theater theater) {
         System.out.println("into theater service");
-//        theaterRepository.
         return theaterRepository.findById(theaterId)
                 .map(theaterInDb -> {
                     theaterInDb.setName(theater.getName());
