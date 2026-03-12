@@ -55,8 +55,15 @@ public class TheaterController {
     @PostMapping("/create")
     public ResponseEntity<ApiResponseDto> createTheater(@RequestBody TheaterRequestDto theaterRequestDto) {
         System.out.println("Creating theater");
-        theaterService.createTheater(theaterRequestDto);
-        return null;
+        Theater theater = theaterService.createTheater(theaterRequestDto);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(
+                        ApiResponseDto.builder()
+                                .message("Theater created successfully")
+                                .data(theater)
+                                .build()
+                );
     }
 
     @PutMapping("/update/{id}")

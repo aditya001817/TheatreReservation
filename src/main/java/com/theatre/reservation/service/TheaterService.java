@@ -38,14 +38,14 @@ public class TheaterService {
                 .orElseThrow(() -> new TheaterNotFoundException(THEATER_NOT_FOUND, HttpStatus.NOT_FOUND));
     }
 
-    public void createTheater(TheaterRequestDto theaterRequestDto) {
+    public Theater createTheater(TheaterRequestDto theaterRequestDto) {
         System.out.println("into theater service createTheater");
         Theater theater = Theater.builder()
                 .name(theaterRequestDto.getName())
                 .location(theaterRequestDto.getLocation())
                 .build();
-        theaterRepository.save(theater);
-        System.out.println("theater created with id " + theater.getId());
+        return theaterRepository.save(theater);
+//        System.out.println("theater created with id " + theater.getId());
     }
 
     public Theater updateTheaterById(long theaterId,  TheaterRequestDto theaterRequestDto) {
