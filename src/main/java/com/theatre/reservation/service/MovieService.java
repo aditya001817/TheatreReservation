@@ -36,19 +36,16 @@ public class MovieService {
                 .orElseThrow(null);
     }
 
-    public List<Movie> getAllMovieByGenre(int page, int size, MovieGenre movieGenre) {
+    public Page<Movie> getAllMovieByGenre(int page, int size, MovieGenre movieGenre) {
         System.out.println("Fetching movie by genre " + movieGenre);
-        Page<Movie> moviePage = movieRepository.findAllByMovieGenre(movieGenre, PageRequest.of(page, size));
-        List<Movie> movies = moviePage.getContent();
-        return movies;
+        return movieRepository.findAllByMovieGenre(movieGenre, PageRequest.of(page, size));
     }
 
 
 
-    public List<Movie> getAllMovieByLanguage(int page, int size, String movieLanguage) {
+    public Page<Movie> getAllMovieByLanguage(int page, int size, String movieLanguage) {
         System.out.println("Fetching movie by Language " + movieLanguage);
-
-        return movies;
+        return movieRepository.findAllByMovieLanguage(movieLanguage, PageRequest.of(page, size));
     }
 
     public Movie createNewMovie(MovieRequestDto movieRequestDto) {

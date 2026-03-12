@@ -59,14 +59,15 @@ public class MovieController {
                                                                   @RequestParam(defaultValue = "5") int size,
                                                                   @PathVariable MovieGenre movieGenre) {
         System.out.println("Getting movie by genre: " + movieGenre);
-        Page<Movie> moviePage = movieService.getAllMovieByGenre(page, size, movieGenre);
-//        return  ResponseEntity.ok(
-//                ApiResponseDto.builder()
-//                        .message("Fetching movies with genre "+movieGenre)
-//                        .data(movie)
-//                        .build()
-//        );
-        return null;
+        Page<Movie> moviePage = (Page<Movie>) movieService.getAllMovieByGenre(page, size, movieGenre);
+        return  ResponseEntity.ok(
+                PagedApiResponseDto.builder()
+                        .totalPages(moviePage.getTotalPages())
+                        .totalElements(moviePage.getTotalElements())
+                        .currentCount(moviePage.getNumberOfElements())
+                        .currentPageData(moviePage.getContent())
+                        .build()
+        );
     }
 
     @GetMapping("/movie/{language}")
@@ -75,12 +76,12 @@ public class MovieController {
                                                                      @PathVariable String language) {
         System.out.println("Getting movie by language: " + language);
         Page<Movie> moviePage = movieService.getAllMovieByLanguage(page, size, language);
-        List<Movie> movies = moviePage.getContent();
         return ResponseEntity.ok(
                 PagedApiResponseDto.builder()
                         .totalPages(moviePage.getTotalPages())
                         .totalElements(moviePage.getTotalElements())
-                        .currentPageData(movies)
+                        .currentCount(moviePage.getNumberOfElements())
+                        .currentPageData(moviePage.getContent())
                         .build()
         );
     }
