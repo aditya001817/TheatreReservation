@@ -7,6 +7,7 @@ import com.theatre.reservation.entity.Theater;
 import com.theatre.reservation.service.TheaterService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,7 +66,10 @@ public class TheaterController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteTheaterById(@PathVariable long id) {
         System.out.println("Deleting theater by id"+id);
-        return null;
+        theaterService.deleteTheaterById(id);
+        return ResponseEntity
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 
 }
