@@ -40,7 +40,13 @@ public class TheaterController {
     @GetMapping("/theater/{id}")
     public ResponseEntity<ApiResponseDto> getTheaterById(@PathVariable long theaterId) {
         System.out.println("Getting theater by id"+theaterId);
-        return null;
+        Theater theater = theaterService.getTheaterById(theaterId);
+        return ResponseEntity.ok(
+                ApiResponseDto.builder()
+                        .message("Fetching theater")
+                        .data(theater)
+                        .build()
+        );
     }
 
     @PostMapping("/create")
