@@ -39,6 +39,7 @@ public class TheaterController {
                 PagedApiResponseDto.builder()
                         .totalPages(pageTheater.getTotalPages())
                         .totalElements(pageTheater.getTotalElements())
+                        .currentCount(pageTheater.getNumberOfElements())
                         .currentPageData(theaters)
                         .build()
         );
@@ -49,7 +50,16 @@ public class TheaterController {
                                                                        @RequestParam(defaultValue = "3") int size,
                                                                        @PathVariable String location) {
         System.out.println("Getting theater by location"+location);
-        return null;
+        Page<Theater> theaterPage= theaterService.getAllTheaterByLocation(location, page, size);
+        List<Theater> theaters = theaterPage.getContent();
+        return ResponseEntity.ok(
+                PagedApiResponseDto.builder()
+                        .totalPages(theaterPage.getTotalPages())
+                        .totalElements(theaterPage.getTotalElements())
+                        .currentCount(theaterPage.getNumberOfElements())
+                        .currentPageData(theaters)
+                        .build()
+        );
     }
 
     @GetMapping("/theater/{id}")

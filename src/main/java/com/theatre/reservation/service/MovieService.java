@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import static com.theatre.reservation.constant.ExceptionMessages.MOVIE_NOT_FOUND;
 
@@ -33,7 +32,7 @@ public class MovieService {
     public Movie getMovieById(long id) {
         System.out.println("Fetching movie with id " + id);
         return movieRepository.findById(id)
-                .orElseThrow(null);
+                .orElseThrow(() -> new MovieNotFoundException(MOVIE_NOT_FOUND, HttpStatus.NOT_FOUND));
     }
 
     public Page<Movie> getAllMovieByGenre(int page, int size, MovieGenre movieGenre) {
