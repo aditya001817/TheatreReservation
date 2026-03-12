@@ -48,12 +48,12 @@ public class TheaterService {
         System.out.println("theater created with id " + theater.getId());
     }
 
-    public Theater updateTheaterById(long theaterId,  Theater theater) {
+    public Theater updateTheaterById(long theaterId,  TheaterRequestDto theaterRequestDto) {
         System.out.println("into theater service updateTheaterById");
         return theaterRepository.findById(theaterId)
                 .map(theaterInDb -> {
-                    theaterInDb.setName(theater.getName());
-                    theaterInDb.setLocation(theater.getLocation());
+                    theaterInDb.setName(theaterRequestDto.getName());
+                    theaterInDb.setLocation(theaterRequestDto.getLocation());
                     return theaterRepository.save(theaterInDb);
                 })
                 .orElseThrow(() -> new TheaterNotFoundException(THEATER_NOT_FOUND, HttpStatus.NOT_FOUND));

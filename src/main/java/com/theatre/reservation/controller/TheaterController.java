@@ -7,6 +7,8 @@ import com.theatre.reservation.entity.Theater;
 import com.theatre.reservation.service.TheaterService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -60,7 +62,15 @@ public class TheaterController {
     @PutMapping("/update/{id}")
     public ResponseEntity<ApiResponseDto> updateTheaterById(@PathVariable long id, @RequestBody TheaterRequestDto theaterRequestDto) {
         System.out.println("Updating theater by id"+id);
-        return null;
+        Theater theater = theaterService.updateTheaterById(id, theaterRequestDto);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(
+                        ApiResponseDto.builder()
+                                .message("Updating Movie")
+                                .data(theater)
+                                .build()
+                );
     }
 
     @DeleteMapping("/delete/{id}")
