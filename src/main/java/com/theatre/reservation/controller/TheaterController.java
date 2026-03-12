@@ -45,7 +45,7 @@ public class TheaterController {
         );
     }
 
-    @GetMapping("/theater/{location}")
+    @GetMapping("/theater/location/{location}")
     public ResponseEntity<PagedApiResponseDto> getAllTheaterByLocation(@RequestParam(defaultValue = "0") int page,
                                                                        @RequestParam(defaultValue = "3") int size,
                                                                        @PathVariable String location) {
@@ -62,7 +62,7 @@ public class TheaterController {
         );
     }
 
-    @GetMapping("/theater/{id}")
+    @GetMapping("/theater/{theaterId}")
     public ResponseEntity<ApiResponseDto> getTheaterById(@PathVariable long theaterId) {
         System.out.println("Getting theater by id"+theaterId);
         Theater theater = theaterService.getTheaterById(theaterId);

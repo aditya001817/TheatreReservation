@@ -42,7 +42,7 @@ public class MovieController {
                         );
     }
 
-    @GetMapping("/movie/{id}")
+    @GetMapping("/movie/id/{id}")
     public ResponseEntity<ApiResponseDto> getMovieById(@PathVariable long id) {
         System.out.println("Getting movie by id: " + id);
         Movie movie = movieService.getMovieById(id);
@@ -54,7 +54,7 @@ public class MovieController {
         );
     }
 
-    @GetMapping("/movie/{movieGenre}")
+    @GetMapping("/movie/genre/{movieGenre}")
     public ResponseEntity<PagedApiResponseDto> getAllMovieByGenre(@RequestParam(defaultValue = "0") int page,
                                                                   @RequestParam(defaultValue = "5") int size,
                                                                   @PathVariable MovieGenre movieGenre) {
@@ -70,7 +70,7 @@ public class MovieController {
         );
     }
 
-    @GetMapping("/movie/{language}")
+    @GetMapping("/movie/language/{language}")
     public ResponseEntity<PagedApiResponseDto> getAllMovieByLanguage(@RequestParam(defaultValue = "0") int page,
                                                                      @RequestParam(defaultValue = "5") int size,
                                                                      @PathVariable String language) {
@@ -114,7 +114,7 @@ public class MovieController {
                 );
     }
 
-    @DeleteMapping("/movie/delete/{id}")
+    @DeleteMapping("/movie/delete/{movieId}")
     public ResponseEntity<?> deleteMovieById(@PathVariable long movieId) {
         System.out.println("Deleting movie");
         movieService.deleteMovieById(movieId);
