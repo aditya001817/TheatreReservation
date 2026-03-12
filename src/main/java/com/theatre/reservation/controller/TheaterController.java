@@ -2,16 +2,20 @@ package com.theatre.reservation.controller;
 
 
 import com.theatre.reservation.dto.ApiResponseDto;
+import com.theatre.reservation.dto.PagedApiResponseDto;
 import com.theatre.reservation.dto.TheaterRequestDto;
 import com.theatre.reservation.entity.Theater;
 import com.theatre.reservation.service.TheaterService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -26,16 +30,24 @@ public class TheaterController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> getAllTheaters(@RequestParam(defaultValue = "0") int page,
+    public ResponseEntity<PagedApiResponseDto> getAllTheaters(@RequestParam(defaultValue = "0") int page,
                                             @RequestParam(defaultValue = "3") int size) {
         System.out.println("Getting all Theaters");
-        return null;
+        Page<Theater> pageTheater = theaterService.getAllTheaters(page, size);
+        List<Theater> theaters = pageTheater.getContent();
+        return ResponseEntity.ok(
+                PagedApiResponseDto.builder()
+                        .totalPages(pageTheater.getTotalPages())
+                        .totalElements(pageTheater.getTotalElements())
+                        .currentPageData(theaters)
+                        .build()
+        );
     }
 
     @GetMapping("/theater/{location}")
-    public ResponseEntity<?> getAllTheaterByLocation(@RequestParam(defaultValue = "0") int page,
-                                                     @RequestParam(defaultValue = "3") int size,
-                                                     @PathVariable String location) {
+    public ResponseEntity<PagedApiResponseDto> getAllTheaterByLocation(@RequestParam(defaultValue = "0") int page,
+                                                                       @RequestParam(defaultValue = "3") int size,
+                                                                       @PathVariable String location) {
         System.out.println("Getting theater by location"+location);
         return null;
     }
