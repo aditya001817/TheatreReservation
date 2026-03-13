@@ -1,10 +1,7 @@
 package com.theatre.reservation.entity;
 
 import com.theatre.reservation.enums.SeatStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -20,7 +17,9 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    int seatNumber;
+    int number;
+    String area;
+    @Enumerated(value = EnumType.STRING)
     SeatStatus seatStatus;
     double price;
 }
