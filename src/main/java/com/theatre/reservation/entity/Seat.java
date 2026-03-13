@@ -9,8 +9,6 @@ import lombok.*;
 @NoArgsConstructor
 @Data
 @Builder
-@Getter
-@Setter
 public class Seat {
 
     @Id

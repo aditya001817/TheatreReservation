@@ -20,8 +20,8 @@ public class Show {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    @ManyToOne
-    @JoinColumn(name = "movie_movie_id")
+    @ManyToOne(targetEntity = Movie.class)
+    @JoinColumn(referencedColumnName = "id", nullable = false)
     Movie movie;
 
     @ManyToOne
