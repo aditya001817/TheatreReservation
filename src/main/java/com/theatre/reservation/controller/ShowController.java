@@ -1,5 +1,6 @@
 package com.theatre.reservation.controller;
 
+import com.theatre.reservation.dto.PagedApiResponseDto;
 import com.theatre.reservation.service.ShowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +19,19 @@ public class ShowController {
         this.showService = showService1;
     }
 
-    public ResponseEntity<?> getAllShows(@RequestParam(defaultValue = "0") int page,
+    public ResponseEntity<PagedApiResponseDto> getAllShows(@RequestParam(defaultValue = "0") int page,
                                          @RequestParam(defaultValue = "10") int size) {
+        System.out.println("Getting All Shows");
+        return null;
+    }
+
+    public ResponseEntity<PagedApiResponseDto> filterShows(@RequestParam(defaultValue = "0")int page,
+                                                           @RequestParam(defaultValue = "10")int size,
+                                                           @RequestParam(required = false) long movieId,
+                                                           @RequestParam(required = false) long theaterId,
+                                                           @RequestParam(required = false) String showDate
+                                                           ) {
+        System.out.println("Filtering Shows");
         return null;
     }
 }
