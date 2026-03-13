@@ -13,8 +13,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+
 public class Show {
 
     @Id
