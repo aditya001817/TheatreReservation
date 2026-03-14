@@ -49,6 +49,7 @@ public class ShowController {
         return null;
     }
 
+    @DeleteMapping("/delete")
     public ResponseEntity<ApiResponseDto> deleteShowById(@PathVariable long showId) {
         System.out.println("Deleting show by Id");
         return null;
