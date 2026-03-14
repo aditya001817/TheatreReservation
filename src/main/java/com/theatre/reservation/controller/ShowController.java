@@ -2,6 +2,7 @@ package com.theatre.reservation.controller;
 
 import com.theatre.reservation.dto.ApiResponseDto;
 import com.theatre.reservation.dto.PagedApiResponseDto;
+import com.theatre.reservation.dto.ShowRequestDto;
 import com.theatre.reservation.service.ShowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +37,11 @@ public class ShowController {
 
     public ResponseEntity<ApiResponseDto> getShowId(@PathVariable long showId) {
         System.out.println("Fetching show by id "+showId);
+        return null;
+    }
+
+    public ResponseEntity<ApiResponseDto> createShow(@RequestBody ShowRequestDto showRequestDto) {
+        System.out.println("Creating show");
         return null;
     }
 }
