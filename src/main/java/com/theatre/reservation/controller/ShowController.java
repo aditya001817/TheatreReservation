@@ -1,12 +1,11 @@
 package com.theatre.reservation.controller;
 
+import com.theatre.reservation.dto.ApiResponseDto;
 import com.theatre.reservation.dto.PagedApiResponseDto;
 import com.theatre.reservation.service.ShowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/shows")
@@ -32,6 +31,11 @@ public class ShowController {
                                                            @RequestParam(required = false) String showDate
                                                            ) {
         System.out.println("Filtering Shows");
+        return null;
+    }
+
+    public ResponseEntity<ApiResponseDto> getShowId(@PathVariable long showId) {
+        System.out.println("Fetching show by id "+showId);
         return null;
     }
 }
