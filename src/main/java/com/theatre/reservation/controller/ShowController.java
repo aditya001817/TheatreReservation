@@ -48,4 +48,9 @@ public class ShowController {
         System.out.println("Creating show");
         return null;
     }
+
+    public ResponseEntity<ApiResponseDto> deleteShowById(@PathVariable long showId) {
+        System.out.println("Deleting show by Id");
+        return null;
+    }
 }
