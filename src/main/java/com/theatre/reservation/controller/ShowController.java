@@ -19,12 +19,14 @@ public class ShowController {
         this.showService = showService1;
     }
 
+    @GetMapping("/all")
     public ResponseEntity<PagedApiResponseDto> getAllShows(@RequestParam(defaultValue = "0") int page,
                                          @RequestParam(defaultValue = "10") int size) {
         System.out.println("Getting All Shows");
         return null;
     }
 
+    @GetMapping("/filter")
     public ResponseEntity<PagedApiResponseDto> filterShows(@RequestParam(defaultValue = "0")int page,
                                                            @RequestParam(defaultValue = "10")int size,
                                                            @RequestParam(required = false) long movieId,
@@ -35,11 +37,13 @@ public class ShowController {
         return null;
     }
 
+    @GetMapping("/id/{showId}")
     public ResponseEntity<ApiResponseDto> getShowId(@PathVariable long showId) {
         System.out.println("Fetching show by id "+showId);
         return null;
     }
 
+    @PostMapping("/create")
     public ResponseEntity<ApiResponseDto> createShow(@RequestBody ShowRequestDto showRequestDto) {
         System.out.println("Creating show");
         return null;
