@@ -46,4 +46,8 @@ public class ShowService {
         System.out.println("Creating new Show");
         return null;
     }
+
+    public void deleteShowById(long showId) {
+        showRepository.deleteById(showId);
+    }
 }
