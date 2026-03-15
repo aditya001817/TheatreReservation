@@ -1,5 +1,6 @@
 package com.theatre.reservation.service;
 
+import com.theatre.reservation.dto.ShowRequestDto;
 import com.theatre.reservation.entity.Seat;
 import com.theatre.reservation.entity.Show;
 import com.theatre.reservation.repository.MovieRepository;
@@ -39,5 +40,10 @@ public class ShowService {
 
     public Show getShowById(long showId) {
         return showRepository.findById(showId).orElse(null);
+    }
+
+    public Show createNewShow(ShowRequestDto showRequestDto) {
+        System.out.println("Creating new Show");
+        return null;
     }
 }
