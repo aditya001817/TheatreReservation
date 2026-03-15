@@ -36,4 +36,8 @@ public class ShowService {
         System.out.println("Filtering shows by theater and movie id");
         return null;
     }
+
+    public Show getShowById(long showId) {
+        return showRepository.findById(showId).orElse(null);
+    }
 }
