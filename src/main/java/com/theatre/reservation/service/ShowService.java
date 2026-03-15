@@ -1,5 +1,6 @@
 package com.theatre.reservation.service;
 
+import com.theatre.reservation.entity.Seat;
 import com.theatre.reservation.entity.Show;
 import com.theatre.reservation.repository.MovieRepository;
 import com.theatre.reservation.repository.SeatRepository;
@@ -7,6 +8,7 @@ import com.theatre.reservation.repository.ShowRepository;
 import com.theatre.reservation.repository.TheaterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,6 +29,11 @@ public class ShowService {
 
     public Page<Show> getAllShows(int page, int size) {
         System.out.println("Getting all shows");
+        return showRepository.findAll(PageRequest.of(page, size));
+    }
+
+    public Page<Seat> filterShowByTheaterIdAndMovieId(long theaterId, long movieId, int page, int size) {
+        System.out.println("Filtering shows by theater and movie id");
         return null;
     }
 }
