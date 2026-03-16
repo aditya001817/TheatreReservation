@@ -48,7 +48,16 @@ public class ShowController {
                                                            @RequestParam(required = false) String showDate
                                                            ) {
         System.out.println("Filtering Shows");
-        return null;
+        Page<Show> showPage = showService.filterShowByTheaterIdAndMovieId(theaterId, movieId, page,  size);
+        List<Show> shows = showPage.getContent();
+        return ResponseEntity.ok(
+                PagedApiResponseDto.builder()
+                        .totalPages(showPage.getTotalPages())
+                        .totalElements(showPage.getTotalElements())
+                        .currentCount(showPage.getNumberOfElements())
+                        .currentPageData(shows)
+                        .build()
+        );
     }
 
     @GetMapping("/id/{showId}")

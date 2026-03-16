@@ -33,7 +33,7 @@ public class ShowService {
         return showRepository.findAll(PageRequest.of(page, size));
     }
 
-    public Page<Seat> filterShowByTheaterIdAndMovieId(long theaterId, long movieId, int page, int size) {
+    public Page<Show> filterShowByTheaterIdAndMovieId(long theaterId, long movieId, int page, int size) {
         System.out.println("Filtering shows by theater and movie id");
         return null;
     }
