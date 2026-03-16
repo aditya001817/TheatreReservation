@@ -30,7 +30,14 @@ public class ShowController {
         System.out.println("Getting All Shows");
         Page<Show> showPage = showService.getAllShows(page, size);
         List<Show> shows = showPage.getContent();
-        return null;
+        return ResponseEntity.ok(
+                PagedApiResponseDto.builder()
+                        .totalPages(showPage.getTotalPages())
+                        .totalElements(showPage.getTotalElements())
+                        .currentCount(showPage.getNumberOfElements())
+                        .currentPageData(shows)
+                        .build()
+        );
     }
 
     @GetMapping("/filter")
