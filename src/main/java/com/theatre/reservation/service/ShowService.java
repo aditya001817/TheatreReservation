@@ -48,6 +48,7 @@ public class ShowService {
     }
 
     public void deleteShowById(long showId) {
+        System.out.println("Deleting show");
         showRepository.deleteById(showId);
     }
 }
