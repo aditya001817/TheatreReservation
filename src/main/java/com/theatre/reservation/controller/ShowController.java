@@ -8,6 +8,7 @@ import com.theatre.reservation.service.ShowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 //import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,7 +50,7 @@ public class ShowController {
                                                            @RequestParam(required = false) String showDate
                                                            ) {
         System.out.println("Filtering Shows");
-        Page<Show> showPage = showService.filterShowByTheaterIdAndMovieId(theaterId, movieId, page,  size);
+        Page<Show> showPage = showService.filterShowByTheaterIdAndMovieId(theaterId, movieId, PageRequest.of(page,  size));
         List<Show> shows = showPage.getContent();
         return ResponseEntity.ok(
                 PagedApiResponseDto.builder()
