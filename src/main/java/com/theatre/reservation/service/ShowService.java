@@ -32,12 +32,17 @@ public class ShowService {
         return showRepository.findAll(PageRequest.of(page, size));
     }
 
-    public Page<Show> filterShowByTheaterIdAndMovieId(long theaterId, long movieId, int page, int size) {
+    public Page<Show> filterShowByTheaterIdAndMovieId(Long theaterId, Long movieId, PageRequest pageRequest) {
         System.out.println("Filtering shows by theater and movie id");
-        if(movieId == null && theaterId == null) {
-            return showRepository.findAll(PageRequest.of(page, size));
+        if(theaterId==null && movieId==null) {
+            return showRepository.findAll(pageRequest);
+        } else if (movieId == null) {
+            return showRepository.findByTheaterId(theaterId, pageRequest);
         }
-        return showRepository.filterShowByTheaterIdAndMovieId(theaterId, movieId, PageRequest.of(page, size));
+        else if(theaterId == null) {
+            return showRepository.findbyMovieId(movieId, pageRequest);
+        }
+        return showRepository.findByTheaterIdAndMovieId(theaterId, movieId, pageRequest);
     }
 
     public Show getShowById(long showId) {
