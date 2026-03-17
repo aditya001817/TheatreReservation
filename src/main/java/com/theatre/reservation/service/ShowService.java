@@ -1,7 +1,6 @@
 package com.theatre.reservation.service;
 
 import com.theatre.reservation.dto.ShowRequestDto;
-import com.theatre.reservation.entity.Seat;
 import com.theatre.reservation.entity.Show;
 import com.theatre.reservation.repository.MovieRepository;
 import com.theatre.reservation.repository.SeatRepository;

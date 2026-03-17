@@ -2,8 +2,6 @@ package com.theatre.reservation.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.Remove;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,7 +19,7 @@ public class Show {
     long id;
 
     @ManyToOne(targetEntity = Movie.class)
-    @JoinColumn(referencedColumnName = "id", nullable = false)
+    @JoinColumn(referencedColumnName = "movieId", nullable = false)
     Movie movie;
 
     @ManyToOne
