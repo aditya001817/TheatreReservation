@@ -8,6 +8,7 @@ import com.theatre.reservation.service.ShowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 //import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -75,12 +76,20 @@ public class ShowController {
     @PostMapping("/create")
     public ResponseEntity<ApiResponseDto> createShow(@RequestBody ShowRequestDto showRequestDto) {
         System.out.println("Creating show");
-        return null;
+        Show show = showService.createNewShow(showRequestDto);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(
+                        ApiResponseDto.builder()
+                                .message("Created Show")
+                                .data(show)
+                                .build()
+                );
     }
 
     @DeleteMapping("/delete")
     public ResponseEntity<ApiResponseDto> deleteShowById(@PathVariable long showId) {
         System.out.println("Deleting show by Id");
-        return null;
+        showService.deleteShowById(showId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
