@@ -63,8 +63,13 @@ public class ShowController {
     @GetMapping("/id/{showId}")
     public ResponseEntity<ApiResponseDto> getShowId(@PathVariable long showId) {
         System.out.println("Fetching show by id "+showId);
-//        Show show = showService.
-        return null;
+        Show show = showService.getShowById(showId);
+        return ResponseEntity.ok(
+                ApiResponseDto.builder()
+                        .message("Fetching Show with showId "+showId)
+                        .data(show)
+                        .build()
+        );
     }
 
     @PostMapping("/create")
