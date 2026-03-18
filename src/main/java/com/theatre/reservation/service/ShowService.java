@@ -31,9 +31,9 @@ public class ShowService {
         this.theaterRepository = theaterRepository;
     }
 
-    public Page<Show> getAllShows(int page, int size) {
+    public Page<Show> getAllShows(PageRequest pageRequest) {
         System.out.println("Getting all shows");
-        return showRepository.findAll(PageRequest.of(page, size));
+        return showRepository.findAll(pageRequest);
     }
 
     public Page<Show> filterShowByTheaterIdAndMovieId(Long theaterId, Long movieId, PageRequest pageRequest) {
@@ -41,12 +41,12 @@ public class ShowService {
         if(theaterId==null && movieId==null) {
             return showRepository.findAll(pageRequest);
         } else if (movieId == null) {
-            return showRepository.findByTheaterId(theaterId, pageRequest);
+            return showRepository.findShowBy_TheaterId(theaterId, pageRequest);
         }
         else if(theaterId == null) {
-            return showRepository.findbyMovieId(movieId, pageRequest);
+            return showRepository.findShowBy_MovieId(movieId, pageRequest);
         }
-        return showRepository.findByTheaterIdAndMovieId(theaterId, movieId, pageRequest);
+        return showRepository.findShowBy_TheaterIdAndMovieId(theaterId, movieId, pageRequest);
     }
 
     public Show getShowById(long showId) {

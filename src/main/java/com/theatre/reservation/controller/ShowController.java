@@ -30,7 +30,7 @@ public class ShowController {
     public ResponseEntity<PagedApiResponseDto> getAllShows(@RequestParam(defaultValue = "0") int page,
                                          @RequestParam(defaultValue = "10") int size) {
         System.out.println("Getting All Shows");
-        Page<Show> showPage = showService.getAllShows(page, size);
+        Page<Show> showPage = showService.getAllShows(PageRequest.of(page, size));
         List<Show> shows = showPage.getContent();
         return ResponseEntity.ok(
                 PagedApiResponseDto.builder()
