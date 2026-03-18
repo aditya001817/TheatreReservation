@@ -43,11 +43,11 @@ public class ShowController {
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<PagedApiResponseDto> filterShows(@RequestParam(defaultValue = "0")int page,
-                                                           @RequestParam(defaultValue = "10")int size,
-                                                           @RequestParam(required = false) long movieId,
+    public ResponseEntity<PagedApiResponseDto> filterShows(@RequestParam(required = false) long movieId,
                                                            @RequestParam(required = false) long theaterId,
-                                                           @RequestParam(required = false) String showDate
+                                                           @RequestParam(required = false) String showDate,
+                                                           @RequestParam(defaultValue = "0")int page,
+                                                           @RequestParam(defaultValue = "10")int size
                                                            ) {
         System.out.println("Filtering Shows");
         Page<Show> showPage = showService.filterShowByTheaterIdAndMovieId(theaterId, movieId, PageRequest.of(page,  size));
