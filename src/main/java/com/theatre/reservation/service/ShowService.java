@@ -56,7 +56,9 @@ public class ShowService {
 
     public Show createNewShow(ShowRequestDto showRequestDto) {
         System.out.println("Creating new Show");
-        return null;
+        return movieRepository.findById(showRequestDto.getMovieId())
+                .map(movie -> theaterRepository.findById(showRequestDto.getTheaterId())
+                        .map(theater -> ))
     }
 
     public void deleteShowById(long showId) {
