@@ -19,9 +19,9 @@ import java.util.List;
 @RequestMapping("/api/v1/shows")
 public class ShowController {
 
-    @Autowired
     private ShowService showService;
 
+    @Autowired
     public ShowController(ShowService showService1) {
         this.showService = showService1;
     }
