@@ -49,10 +49,10 @@ public class ShowService {
         if(theaterId==null && movieId==null) {
             return showRepository.findAll(pageRequest);
         } else if (movieId == null) {
-            return showRepository.findShowBy_TheaterId(theaterId, pageRequest);
+            return showRepository.findByTheater_TheaterId(theaterId, pageRequest);
         }
         else if(theaterId == null) {
-            return showRepository.findShowBy_MovieId(movieId, pageRequest);
+            return showRepository.findByMovie_MovieId(movieId, pageRequest);
         }
         return showRepository.findShowBy_TheaterIdAndMovieId(theaterId, movieId, pageRequest);
     }
