@@ -74,7 +74,7 @@ public class ShowController {
         );
     }
 
-    @PostMapping("/create")
+    @PostMapping("/show/create")
     public ResponseEntity<ApiResponseDto> createShow(@RequestBody ShowRequestDto showRequestDto) {
         System.out.println("Creating show");
         Show show = showService.createNewShow(showRequestDto);
@@ -87,7 +87,7 @@ public class ShowController {
                 );
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/show/delete/{showId}")
     public ResponseEntity<ApiResponseDto> deleteShowById(@PathVariable long showId) {
         System.out.println("Deleting show by Id");
         showService.deleteShowById(showId);
