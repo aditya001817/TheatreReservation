@@ -54,7 +54,7 @@ public class ShowService {
         else if(theaterId == null) {
             return showRepository.findByMovie_MovieId(movieId, pageRequest);
         }
-        return showRepository.findShowBy_TheaterIdAndMovieId(theaterId, movieId, pageRequest);
+        return showRepository.findByTheater_TheaterIdAndMovie_MovieId(theaterId, movieId, pageRequest);
     }
 
     public Show getShowById(long showId) {

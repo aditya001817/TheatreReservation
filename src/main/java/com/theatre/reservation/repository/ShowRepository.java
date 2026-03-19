@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface ShowRepository extends JpaRepository<Show, Long> {
     Page<Show> findByMovie_MovieId(long movieId, Pageable pageable);
     Page<Show> findByTheater_TheaterId(long theaterId, Pageable pageable);
-    Page<Show> findShowBy_TheaterIdAndMovieId(long theaterId, long movieId, Pageable pageable);
+    Page<Show> findByTheater_TheaterIdAndMovie_MovieId(long theaterId, long movieId, Pageable pageable);
 }
