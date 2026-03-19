@@ -1,6 +1,8 @@
 package com.theatre.reservation.service;
 
+import com.theatre.reservation.dto.SeatStructure;
 import com.theatre.reservation.dto.ShowRequestDto;
+import com.theatre.reservation.entity.Seat;
 import com.theatre.reservation.entity.Show;
 import com.theatre.reservation.exception.ShowNotFoundException;
 import com.theatre.reservation.repository.MovieRepository;
@@ -12,6 +14,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.theatre.reservation.constant.ExceptionMessages.SHOW_NOT_FOUND;
 
@@ -58,7 +63,9 @@ public class ShowService {
         System.out.println("Creating new Show");
         return movieRepository.findById(showRequestDto.getMovieId())
                 .map(movie -> theaterRepository.findById(showRequestDto.getTheaterId())
-                        .map(theater -> ))
+                        .map(theater -> {
+                            List<Seat> seats = new ArrayList<>();
+                        }))
     }
 
     public void deleteShowById(long showId) {
