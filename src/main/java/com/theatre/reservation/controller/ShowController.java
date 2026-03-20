@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/api/v1/shows")
 public class ShowController {
 
-    private ShowService showService;
+    private final ShowService showService;
 
     @Autowired
     public ShowController(ShowService showService1) {
