@@ -1,10 +1,8 @@
 package com.theatre.reservation.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.theatre.reservation.enums.Role;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,5 +23,7 @@ public class User {
     String username;
     String email;
 
+    @Enumerated(EnumType.STRING)
     Role role;
+    String password;
 }
