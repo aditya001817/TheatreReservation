@@ -1,6 +1,7 @@
 package com.theatre.reservation.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +16,11 @@ public class UserController {
 
     public ResponseEntity<?> getAllUsers() {
         System.out.println("Getting all users");
+        return null;
+    }
+
+    public ResponseEntity<?> promoteUserToAdmin(@PathVariable String username) {
+        System.out.println("Promoting user "+username);
         return null;
     }
 }
