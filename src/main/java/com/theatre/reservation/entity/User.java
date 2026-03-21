@@ -20,4 +20,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long userId;
+    String firstName;
+    String lastName;
+    String username;
+    String email;
+
+    Role role;
 }
