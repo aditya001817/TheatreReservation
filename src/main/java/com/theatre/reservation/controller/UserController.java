@@ -12,4 +12,9 @@ public class UserController {
         System.out.println("Getting current user");
         return null;
     }
+
+    public ResponseEntity<?> getAllUsers() {
+        System.out.println("Getting all users");
+        return null;
+    }
 }
