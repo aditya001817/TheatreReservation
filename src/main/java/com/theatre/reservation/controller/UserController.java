@@ -16,6 +16,7 @@ public class UserController {
         return null;
     }
 
+    @GetMapping("/all")
     public ResponseEntity<?> getAllUsers() {
         System.out.println("Getting all users");
         return null;
