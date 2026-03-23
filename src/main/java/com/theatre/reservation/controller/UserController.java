@@ -1,5 +1,6 @@
 package com.theatre.reservation.controller;
 
+import com.theatre.reservation.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     public final UserRepository userRepository;
+
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @GetMapping("/user/me")
     public ResponseEntity<?> currentUser() {
