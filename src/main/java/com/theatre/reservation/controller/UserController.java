@@ -21,6 +21,7 @@ public class UserController {
         return null;
     }
 
+    @Secured({"ROLE_SUPER_ADMIN"})
     @PutMapping("/promote/{username)")
     public ResponseEntity<?> promoteUserToAdmin(@PathVariable String username) {
         System.out.println("Promoting user "+username);
