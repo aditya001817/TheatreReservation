@@ -1,6 +1,7 @@
 package com.theatre.reservation.controller;
 
 import com.theatre.reservation.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ public class UserController {
 
     public final UserRepository userRepository;
 
+    @Autowired
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
