@@ -1,6 +1,7 @@
 package com.theatre.reservation.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,6 +14,7 @@ public class UserController {
         return null;
     }
 
+    @Secured({"ROLE_SUPER_ADMIN"})
     @GetMapping("/all")
     public ResponseEntity<?> getAllUsers() {
         System.out.println("Getting all users");
