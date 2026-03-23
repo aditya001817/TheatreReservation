@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/users")
 public class UserController {
 
+    public final UserRepository userRepository;
+
     @GetMapping("/user/me")
     public ResponseEntity<?> currentUser() {
         System.out.println("Getting current user");
