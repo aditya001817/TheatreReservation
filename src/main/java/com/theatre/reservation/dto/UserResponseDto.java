@@ -1,5 +1,6 @@
 package com.theatre.reservation.dto;
 
+import com.theatre.reservation.enums.Role;
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,4 +12,5 @@ public class UserResponseDto {
     String lastName;
     String username;
     String email;
+    Role role;
 }
