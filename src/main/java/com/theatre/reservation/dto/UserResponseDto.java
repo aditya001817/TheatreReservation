@@ -7,6 +7,6 @@ import lombok.Data;
 @Builder
 public class UserResponseDto {
     long id;
-    long firstName;
-
+    String firstName;
+    String lastName;
 }
