@@ -1,5 +1,6 @@
 package com.theatre.reservation.controller;
 
+import com.theatre.reservation.dto.ApiResponseDto;
 import com.theatre.reservation.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class UserController {
 
     @Secured({"ROLE_SUPER_ADMIN"})
     @GetMapping("/all")
-    public ResponseEntity<?> getAllUsers() {
+    public ResponseEntity<ApiResponseDto> getAllUsers() {
         System.out.println("Getting all users");
         return null;
     }
