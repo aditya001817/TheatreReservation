@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 @Service
 public class SeatService {
@@ -18,6 +19,7 @@ public class SeatService {
     }
 
     public List<Seat> createSeatWithGivenPrice(int seats, double price, String area){
-        return null;
+        return IntStream.range(1,  seats+1)
+                .mapToObj(seatCount -> seat.)
     }
 }
