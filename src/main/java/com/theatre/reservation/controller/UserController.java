@@ -1,6 +1,7 @@
 package com.theatre.reservation.controller;
 
 import com.theatre.reservation.dto.ApiResponseDto;
+import com.theatre.reservation.dto.UserResponseDto;
 import com.theatre.reservation.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class UserController {
     }
 
     @GetMapping("/user/me")
-    public ResponseEntity<?> currentUser() {
+    public ResponseEntity<UserResponseDto> currentUser() {
         System.out.println("Getting current user");
         return null;
     }
