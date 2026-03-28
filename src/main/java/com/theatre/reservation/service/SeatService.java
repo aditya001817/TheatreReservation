@@ -20,6 +20,7 @@ public class SeatService {
 
     public List<Seat> createSeatWithGivenPrice(int seats, double price, String area){
         return IntStream.range(1,  seats+1)
-                .mapToObj(seatCount -> seat.)
+                .mapToObj(seatCount -> Seat.builder()
+                )
     }
 }
