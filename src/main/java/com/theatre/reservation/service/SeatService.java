@@ -14,7 +14,7 @@ public class SeatService {
     private final SeatRepository seatRepository;
 
     @Autowired
-     SeatService(SeatRepository seatRepository) {
+    public SeatService(SeatRepository seatRepository) {
         this.seatRepository = seatRepository;
     }
 
