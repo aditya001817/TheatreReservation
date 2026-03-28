@@ -1,6 +1,7 @@
 package com.theatre.reservation.service;
 
 import com.theatre.reservation.entity.Seat;
+import com.theatre.reservation.enums.SeatStatus;
 import com.theatre.reservation.repository.SeatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,13 @@ public class SeatService {
     public List<Seat> createSeatWithGivenPrice(int seats, double price, String area){
         return IntStream.range(1,  seats+1)
                 .mapToObj(seatCount -> Seat.builder()
+                        .price(price)
+                        .number(seatCount)
+                        .area(area)
+                        .seatStatus(SeatStatus.UNBOOKED)
+                        .build()
                 )
+                .map(seatRepository::save)
+                .toList();
     }
 }
