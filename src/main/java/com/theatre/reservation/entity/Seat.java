@@ -18,6 +18,6 @@ public class Seat {
     int number;
     String area;
     @Enumerated(value = EnumType.STRING)
-    SeatStatus seatStatus;
+    SeatStatus status;
     double price;
 }

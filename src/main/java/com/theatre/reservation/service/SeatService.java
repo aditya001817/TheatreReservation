@@ -25,7 +25,7 @@ public class SeatService {
                         .price(price)
                         .number(seatCount)
                         .area(area)
-                        .seatStatus(SeatStatus.UNBOOKED)
+                        .status(SeatStatus.UNBOOKED)
                         .build()
                 )
                 .map(seatRepository::save)
