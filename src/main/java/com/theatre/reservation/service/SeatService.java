@@ -19,7 +19,7 @@ public class SeatService {
         this.seatRepository = seatRepository;
     }
 
-    public List<Seat> createSeatWithGivenPrice(int seats, double price, String area){
+    public List<Seat> createSeatWithGivenPrice(int seats, double price, String area) {
          return IntStream.range(1,  seats+1)
                 .mapToObj(seatCount -> new Seat(
                         null,
@@ -27,7 +27,8 @@ public class SeatService {
                         area,
                         SeatStatus.UNBOOKED,
                         price
-                ));
+                ))
+                 .toList();
 
     }
 }
