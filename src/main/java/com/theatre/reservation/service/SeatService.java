@@ -20,15 +20,14 @@ public class SeatService {
     }
 
     public List<Seat> createSeatWithGivenPrice(int seats, double price, String area){
-        return IntStream.range(1,  seats+1)
-                .mapToObj(seatCount -> Seat.builder()
-                        .price(price)
-                        .number(seatCount)
-                        .area(area)
-                        .status(SeatStatus.UNBOOKED)
-                        .build()
-                )
-                .map(seatRepository::save)
-                .toList();
+         return IntStream.range(1,  seats+1)
+                .mapToObj(seatCount -> new Seat(
+                        null,
+                        seatCount,
+                        area,
+                        SeatStatus.UNBOOKED,
+                        price
+                ));
+
     }
 }
