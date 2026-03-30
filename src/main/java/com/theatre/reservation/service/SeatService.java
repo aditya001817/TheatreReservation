@@ -19,16 +19,16 @@ public class SeatService {
         this.seatRepository = seatRepository;
     }
 
-    public List<Seat> createSeatWithGivenPrice(int seats, double price, String area) {
-         return IntStream.range(1,  seats+1)
-                .mapToObj(seatCount -> new Seat(
-                        null,
-                        seatCount,
-                        area,
-                        SeatStatus.UNBOOKED,
-                        price
-                ))
-                 .toList();
-
+    public List<Seat> createSeatsWithGivenPrice(int seats, double price, String area){
+        return IntStream.range(1, seats+1)
+                .mapToObj(seatCount -> Seat.builder()
+                        .number(seatCount)
+                        .area(area)
+                        .status(SeatStatus.UNBOOKED)
+                        .price(price)
+                        .build()
+                )
+                .map(seatRepository::save)
+                .toList();
     }
 }
