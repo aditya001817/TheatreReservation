@@ -6,6 +6,7 @@ import com.theatre.reservation.repository.SeatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -19,16 +20,16 @@ public class SeatService {
         this.seatRepository = seatRepository;
     }
 
-    public List<Seat> createSeatsWithGivenPrice(int seats, double price, String area){
-        return IntStream.range(1, seats+1)
-                .mapToObj(seatCount -> Seat.builder()
-                        .number(seatCount)
-                        .price(price)
-                        .area(area)
-//                        .status(SeatStatus.UNBOOKED)
-                        .build()
-                )
-                .map(seatRepository::save)
-                .toList();
+    public List<Seat> createSeatsWithGivenPrice(int count, double price, String area){
+        List<Seat> seats = new ArrayList<>();
+        for(int i = 0; i <= count; i++) {
+            seats.add(Seat.builder()
+                    .number(i)
+                    .area(area)
+                    .price(price)
+                    .status(SeatStatus.UNBOOKED)
+                    .id().build());
+        }
+        return seats;
     }
 }
