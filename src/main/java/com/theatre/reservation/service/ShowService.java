@@ -2,8 +2,10 @@ package com.theatre.reservation.service;
 
 import com.theatre.reservation.dto.SeatStructure;
 import com.theatre.reservation.dto.ShowRequestDto;
+import com.theatre.reservation.entity.Movie;
 import com.theatre.reservation.entity.Seat;
 import com.theatre.reservation.entity.Show;
+import com.theatre.reservation.entity.Theater;
 import com.theatre.reservation.exception.MovieNotFoundException;
 import com.theatre.reservation.exception.ShowNotFoundException;
 import com.theatre.reservation.exception.TheaterNotFoundException;
@@ -64,30 +66,12 @@ public class ShowService {
 
     public Show createNewShow(ShowRequestDto showRequestDto) {
         System.out.println("Creating new Show");
-        return movieRepository.findById(showRequestDto.getMovieId())
-                .map(movie -> theaterRepository.findById(showRequestDto.getTheaterId())
-                        .map(theater -> {
-                            List<Seat> seats = new ArrayList<>();
-                            showRequestDto.getSeats()
-                                    .forEach(seatStructure ->
-                                            seats.addAll(
-                                                    seatService.createSeatWithGivenPrice(
-                                                            seatStructure.getSeatCount(),
-                                                            seatStructure.getSeatPrice(),
-                                                            seatStructure.getArea()
-                                                    )
-                                            ));
-                            Show show = Show.builder()
-                                    .movie(movie)
-                                    .theater(theater)
-                                    .startTime(LocalDateTime.parse(showRequestDto.getStartTime()))
-                                    .endTime(LocalDateTime.parse(showRequestDto.getEndTime()))
-                                    .seats(seats)
-                                    .build();
-                            return showRepository.save(show);
-                        })
-                        .orElseThrow(() -> new TheaterNotFoundException(THEATER_NOT_FOUND, HttpStatus.BAD_REQUEST)))
+        Movie movie = movieRepository.findById(showRequestDto.getMovieId())
                 .orElseThrow(() -> new MovieNotFoundException(MOVIE_NOT_FOUND, HttpStatus.BAD_REQUEST));
+
+        Theater theater = theaterRepository.findById(showRequestDto.getTheaterId())
+                .orElseThrow(() -> new TheaterNotFoundException(THEATER_NOT_FOUND, HttpStatus.BAD_REQUEST));
+
     }
 
     public void deleteShowById(long showId) {
