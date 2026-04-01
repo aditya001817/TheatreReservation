@@ -71,6 +71,13 @@ public class ShowService {
 
         Theater theater = theaterRepository.findById(showRequestDto.getTheaterId())
                 .orElseThrow(() -> new TheaterNotFoundException(THEATER_NOT_FOUND, HttpStatus.BAD_REQUEST));
+
+        Show show = Show.builder()
+                .movie(movie)
+                .theater(theater)
+                .startTime(LocalDateTime.parse(showRequestDto.getStartTime()))
+                .endTime(LocalDateTime.parse(showRequestDto.getEndTime()))
+                .build();
         return null;
 
     }
