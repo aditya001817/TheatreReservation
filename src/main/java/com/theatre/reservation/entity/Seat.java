@@ -18,6 +18,7 @@ public class Seat {
     int number;
     String area;
     @Enumerated(value = EnumType.STRING)
-    SeatStatus status;
+    @Builder.Default
+    SeatStatus status = SeatStatus.UNBOOKED;
     double price;
 }
