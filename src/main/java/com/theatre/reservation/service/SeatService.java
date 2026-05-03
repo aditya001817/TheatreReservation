@@ -23,12 +23,12 @@ public class SeatService {
     public List<Seat> createSeatsWithGivenPrice(int count, double price, String area){
         List<Seat> seats = new ArrayList<>();
         for(int i = 0; i <= count; i++) {
-            seats.add(Seat.builder()
-                    .number(i)
-                    .area(area)
-                    .price(price)
-                    .build()
-            );
+//            seats.add(Seat.builder()
+//                    .number(i)
+//                    .area(area)
+//                    .price(price)
+//                    .build()
+//            );
         }
         return seats;
     }

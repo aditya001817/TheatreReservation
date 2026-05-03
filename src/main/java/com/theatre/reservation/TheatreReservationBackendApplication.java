@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TheatreReservationBackendApplication {
 
 	public static void main(String[] args) {
+		System.out.println("Running Theatre Reservation Backend File");
 		SpringApplication.run(TheatreReservationBackendApplication.class, args);
 	}
 
