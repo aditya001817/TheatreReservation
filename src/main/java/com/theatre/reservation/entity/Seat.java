@@ -1,24 +1,30 @@
 package com.theatre.reservation.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.theatre.reservation.enums.SeatStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Seat {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long id;
 
-    int number;
-    String area;
-    double price;
     @Enumerated(value = EnumType.STRING)
-    @Builder.Default
-    SeatStatus status = SeatStatus.UNBOOKED;
+    private SeatStatus status;
+
+    private double price;
+    private int number;
+    private String area;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "show_id")
+    private Show show;
 }
