@@ -20,9 +20,9 @@ public class SeatService {
         this.seatRepository = seatRepository;
     }
 
-    public List<Seat> createSeatsWithGivenPrice(int count, double price, String area){
+    public List<Seat> createSeatsWithGivenPrice(int seat, double price, String area){
         List<Seat> seats = new ArrayList<>();
-        for(int i = 1; i <= count; i++) {
+        for(int i = 1; i <= seat; i++) {
             seats.add(Seat.builder()
                     .number(i)
                     .area(area)
