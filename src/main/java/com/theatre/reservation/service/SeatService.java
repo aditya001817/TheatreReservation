@@ -30,6 +30,6 @@ public class SeatService {
                     .status(SeatStatus.UNBOOKED)
                     .build());
         }
-        return seats;
+        return seatRepository.saveAll(seats);
     }
 }
