@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-//@Data
+@Data
 @Builder
 @Getter
 @Setter
