@@ -11,4 +11,5 @@ public class TheatreReservationBackendApplication {
 		SpringApplication.run(TheatreReservationBackendApplication.class, args);
 	}
 
+	// IF ANY PROBLEM IN IMPORTING THE PACAKGES THEN GO TO PLUGINS AND DISABLE THEM AND AGAIN ENABLE THEM IT WROKS!!
 }

@@ -22,7 +22,7 @@ public class SeatService {
 
     public List<Seat> createSeatsWithGivenPrice(int count, double price, String area){
         List<Seat> seats = new ArrayList<>();
-        for(int i = 0; i <= count; i++) {
+        for(int i = 1; i <= count; i++) {
             seats.add(Seat.builder()
                     .number(i)
                     .area(area)
@@ -30,6 +30,6 @@ public class SeatService {
                     .status(SeatStatus.UNBOOKED)
                     .build());
         }
-        return seatRepository.saveAll(seats);
+        return seats;
     }
 }
