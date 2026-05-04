@@ -72,7 +72,30 @@ public class ShowService {
         Theater theater = theaterRepository.findById(showRequestDto.getTheaterId())
                 .orElseThrow(() -> new TheaterNotFoundException(THEATER_NOT_FOUND, HttpStatus.BAD_REQUEST));
 
-        return null;
+        Show show = Show.builder()
+                .movie(movie)
+                .theater(theater)
+                .startTime(LocalDateTime.parse(showRequestDto.getStartTime()))
+                .endTime(LocalDateTime.parse(showRequestDto.getEndTime()))
+                .build();
+
+        List<Seat> allGeneratedSeats = new ArrayList<>();
+        showRequestDto.getSeats().forEach(structure -> {
+            List<Seat> seats = seatService.createSeatsWithGivenPrice(
+                    structure.getSeatCount(),
+                    structure.getSeatPrice(),
+                    structure.getArea()
+            );
+
+            for (Seat seat : seats) {
+                seat.setShow(show);
+            }
+            allGeneratedSeats.addAll(seats);
+        });
+
+        show.setSeats(allGeneratedSeats);
+
+        return showRepository.save(show);
 
     }
 
