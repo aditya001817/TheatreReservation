@@ -28,7 +28,8 @@ public class SeatService {
                     .area(area)
                     .price(price)
                     .status(SeatStatus.UNBOOKED)
-                    .build());
+                    .build()
+            );
         }
         return seats;
     }

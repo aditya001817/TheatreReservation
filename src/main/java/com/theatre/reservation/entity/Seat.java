@@ -6,14 +6,16 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Data
+//@Data
 @Builder
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Seat {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Enumerated(value = EnumType.STRING)
