@@ -9,8 +9,6 @@ import lombok.*;
 @Table(name = "seats")
 @Data
 @Builder
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Seat {
@@ -19,11 +17,12 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    private int number;
+
     @Enumerated(value = EnumType.STRING)
     private SeatStatus status;
 
     private double price;
-    private int number;
     private String area;
 
     @JsonIgnore

@@ -3,6 +3,7 @@ package com.theatre.reservation.controller;
 import com.theatre.reservation.dto.ApiResponseDto;
 import com.theatre.reservation.dto.UserResponseDto;
 import com.theatre.reservation.entity.User;
+import com.theatre.reservation.enums.Role;
 import com.theatre.reservation.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -67,9 +68,23 @@ public class UserController {
     }
 
     @Secured({"ROLE_SUPER_ADMIN"})
-    @PutMapping("/promote/{username)")
+    @PutMapping("/promote/{username}")
     public ResponseEntity<UserResponseDto> promoteUserToAdmin(@PathVariable String username) {
         System.out.println("Promoting user "+username);
-        return null;
+        return userRepository.findByUsername(username)
+                .map(userInDb -> {
+                    userInDb.setRole(Role.ROLE_SUPER_ADMIN);
+                    return userRepository.save(userInDb);
+                })
+                .map(updatedUser -> ResponseEntity.ok(UserResponseDto.builder()
+                        .email(updatedUser.getEmail())
+                        .firstName(updatedUser.getFirstName())
+                        .lastName(updatedUser.getLastName())
+                        .id(updatedUser.getUserId())
+                        .username(updatedUser.getUsername())
+                        .role(updatedUser.getRole())
+                        .build())
+                )
+                .orElseThrow(() -> new UsernameNotFoundException(USER_NOT_FOUND));
     }
 }

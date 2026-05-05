@@ -23,8 +23,9 @@ public class SeatService {
     public List<Seat> createSeatsWithGivenPrice(int seat, double price, String area){
         List<Seat> seats = new ArrayList<>();
         for(int i = 1; i <= seat; i++) {
+            int seatnumber = i;
             seats.add(Seat.builder()
-                    .number(i)
+                    .number(seatnumber)
                     .area(area)
                     .price(price)
                     .status(SeatStatus.UNBOOKED)
