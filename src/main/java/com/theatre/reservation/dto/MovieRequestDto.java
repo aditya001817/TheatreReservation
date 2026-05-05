@@ -10,9 +10,9 @@ import java.util.List;
 @Builder
 public class MovieRequestDto {
 
-    String movieLanguage;
-    int movieLength;
-    String movieName;
-    List<MovieGenre> movieGenre;
-    String releaseDate;
+    private String movieLanguage;
+    private int movieLength;
+    private String movieName;
+    private List<MovieGenre> movieGenre;
+    private String releaseDate;
 }

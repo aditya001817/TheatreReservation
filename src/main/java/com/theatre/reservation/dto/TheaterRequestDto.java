@@ -7,6 +7,6 @@ import lombok.Data;
 @Builder
 public class TheaterRequestDto {
 
-    String name;
-    String location;
+    private String name;
+    private String location;
 }

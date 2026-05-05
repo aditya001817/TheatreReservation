@@ -9,9 +9,9 @@ import java.util.List;
 @Data
 @Builder
 public class ShowRequestDto {
-    long movieId;
-    long theaterId;
-    String startTime;
-    String endTime;
-    List<SeatStructure> seats;
+    private long movieId;
+    private long theaterId;
+    private String startTime;
+    private String endTime;
+    private List<SeatStructure> seats;
 }

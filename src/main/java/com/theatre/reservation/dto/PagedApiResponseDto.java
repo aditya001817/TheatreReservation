@@ -11,8 +11,8 @@ import java.util.List;
 @Data
 public class PagedApiResponseDto {
 
-    int totalPages;
-    long totalElements;
-    List<?> currentPageData;
-    int currentCount;
+    private int totalPages;
+    private long totalElements;
+    private List<?> currentPageData;
+    private int currentCount;
 }

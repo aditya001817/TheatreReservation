@@ -8,6 +8,6 @@ import lombok.Data;
 @Data
 public class ApiResponseDto {
 
-    String message;
-    Object data;
+    private String message;
+    private Object data;
 }
