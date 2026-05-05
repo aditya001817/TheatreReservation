@@ -24,15 +24,15 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long userId;
-    String firstName;
-    String lastName;
-    String username;
-    String email;
+    private Long userId;
+    private String firstName;
+    private String lastName;
+    private String username;
+    private String email;
 
     @Enumerated(EnumType.STRING)
-    Role role;
-    String password;
+    private Role role;
+    private String password;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

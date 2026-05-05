@@ -16,17 +16,17 @@ public class Show {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    private Long id;
 
     @ManyToOne(targetEntity = Movie.class)
     @JoinColumn(referencedColumnName = "movieId", nullable = false)
-    Movie movie;
+    private Movie movie;
 
     @ManyToOne
-    Theater theater;
-    LocalDateTime startTime;
-    LocalDateTime endTime;
+    private Theater theater;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
 
     @OneToMany(fetch = FetchType.LAZY , cascade = CascadeType.REMOVE)
-    List<Seat> seats;
+    private List<Seat> seats;
 }
