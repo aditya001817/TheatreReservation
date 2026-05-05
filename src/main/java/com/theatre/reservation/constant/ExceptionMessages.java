@@ -5,4 +5,5 @@ public interface ExceptionMessages {
     String MOVIE_NOT_FOUND = "Movie not found";
     String SEAT_NOT_FOUND = "Seat not found";
     String SHOW_NOT_FOUND = "Show not found";
+    String USER_NOT_FOUND = "Username not found";
 }

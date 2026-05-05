@@ -2,13 +2,18 @@ package com.theatre.reservation.controller;
 
 import com.theatre.reservation.dto.ApiResponseDto;
 import com.theatre.reservation.dto.UserResponseDto;
+import com.theatre.reservation.entity.User;
 import com.theatre.reservation.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static com.theatre.reservation.constant.ExceptionMessages.USER_NOT_FOUND;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -24,7 +29,18 @@ public class UserController {
     @GetMapping("/user/me")
     public ResponseEntity<UserResponseDto> currentUser() {
         System.out.println("Getting current user");
-        return null;
+        String currentUsername = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return userRepository.findByUsername(currentUsername)
+                .map(user -> ResponseEntity.ok(UserResponseDto.builder()
+                        .email(user.getEmail())
+                        .username(user.getUsername())
+                        .firstName(user.getFirstName())
+                        .lastName(user.getLastName())
+                        .role(user.getRole())
+                        .id(user.getUserId())
+                        .build())
+                )
+                .orElseThrow(() -> new UsernameNotFoundException(USER_NOT_FOUND));
     }
 
     @Secured({"ROLE_SUPER_ADMIN"})
