@@ -42,7 +42,12 @@ public class UserController {
                         .build()
                 )
                 .toList();
-        return null;
+        return ResponseEntity.ok(
+                ApiResponseDto.builder()
+                        .data(userResponseDtos)
+                        .message("Fetched All Users")
+                        .build()
+        );
     }
 
     @Secured({"ROLE_SUPER_ADMIN"})
