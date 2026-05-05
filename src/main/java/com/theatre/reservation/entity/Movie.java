@@ -17,14 +17,17 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long movieId;
-    String movieName;
-    String movieLanguage;
+    private Long movieId;
 
-    @ElementCollection
+    private String movieName;
+    private String movieLanguage;
+
+    @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
-    List<MovieGenre> movieGenre;
-    LocalDate releaseDate;
-    int movieLength;
+    @CollectionTable(name = "movie_genre", joinColumns = @JoinColumn(name = "movie_id"))
+    @Column(name = "genre")
+    private List<MovieGenre> movieGenre;
 
+    private LocalDate releaseDate;
+    private int movieLength;
 }
