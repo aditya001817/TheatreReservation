@@ -2,7 +2,6 @@ package com.theatre.reservation.controller;
 
 import com.theatre.reservation.dto.ApiResponseDto;
 import com.theatre.reservation.dto.UserResponseDto;
-import com.theatre.reservation.entity.User;
 import com.theatre.reservation.enums.Role;
 import com.theatre.reservation.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
