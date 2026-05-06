@@ -1,5 +1,6 @@
 package com.theatre.reservation.entity;
 
+import com.theatre.reservation.enums.ReservationStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
