@@ -30,4 +30,9 @@ public class ReservationService {
         System.out.println("Into Service Layer");
         return null;
     }
+
+    public Reservation getReservationById(long reservationId) {
+        System.out.println("Into Service Layer");
+        return null;
+    }
 }
