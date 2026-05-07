@@ -1,5 +1,6 @@
 package com.theatre.reservation.service;
 
+import com.theatre.reservation.dto.ReservationRequestDto;
 import com.theatre.reservation.entity.Reservation;
 import com.theatre.reservation.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,11 @@ public class ReservationService {
     }
 
     public List<Reservation> getAllReservationsForCurrentUser(int page, int size) {
+        System.out.println("Into Service Layer");
+        return null;
+    }
+
+    public Reservation getAllReservationsForCurrentUser(ReservationRequestDto reservationRequestDto) {
         System.out.println("Into Service Layer");
         return null;
     }
