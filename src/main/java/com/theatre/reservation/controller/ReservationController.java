@@ -32,4 +32,9 @@ public class ReservationController {
         System.out.println("Filtering Reservations ");
         return  null;
     }
+
+    public ResponseEntity<ApiResponseDto> getReservationById(@PathVariable long id) {
+        System.out.println("Getting Reservation by id "+id);
+        return null;
+    }
 }
