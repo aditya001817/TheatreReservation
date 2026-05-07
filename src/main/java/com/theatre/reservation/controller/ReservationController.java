@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping("/api/v1/reservations")
 public class ReservationController {
@@ -20,5 +22,14 @@ public class ReservationController {
     public ResponseEntity<ApiResponseDto> createReservation(@RequestParam ReservationRequestDto reservationRequestDto) {
         System.out.println("Creating new Reservation");
         return null;
+    }
+
+    public ResponseEntity<ApiResponseDto> filterReservation(@RequestParam(required = false) long movieId,
+                                                            @RequestParam(required = false) long theaterId,
+                                                            @RequestParam(required = false) long userId,
+                                                            @RequestParam(defaultValue = "BOOKED") String reservationStatus,
+                                                            @RequestParam(required = false) String createdDate) {
+        System.out.println("Filtering Reservations ");
+        return  null;
     }
 }
