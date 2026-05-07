@@ -33,8 +33,13 @@ public class ReservationController {
         return  null;
     }
 
-    public ResponseEntity<ApiResponseDto> getReservationById(@PathVariable long id) {
-        System.out.println("Getting Reservation by id "+id);
+    public ResponseEntity<ApiResponseDto> getReservationById(@PathVariable long reservationId) {
+        System.out.println("Getting Reservation by id "+reservationId);
+        return null;
+    }
+
+    public ResponseEntity<ApiResponseDto> cancelReservation(@PathVariable long reservationId) {
+        System.out.println("Canceling Reservation for ReservationId" +reservationId);
         return null;
     }
 }
