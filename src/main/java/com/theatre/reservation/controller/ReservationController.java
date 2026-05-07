@@ -3,6 +3,7 @@ package com.theatre.reservation.controller;
 import com.theatre.reservation.dto.ApiResponseDto;
 import com.theatre.reservation.dto.ReservationRequestDto;
 import com.theatre.reservation.service.ReservationService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,8 +48,11 @@ public class ReservationController {
     }
 
     @DeleteMapping("/cancel/{reservationId}")
-    public ResponseEntity<ApiResponseDto> cancelReservation(@PathVariable long reservationId) {
+    public ResponseEntity<?> cancelReservation(@PathVariable long reservationId) {
         System.out.println("Canceling Reservation for ReservationId" +reservationId);
-        return null;
+        reservationService.cancelReservation(reservationId);
+        return ResponseEntity
+                .status(HttpStatus.NO_CONTENT)
+                .build();
     }
 }
