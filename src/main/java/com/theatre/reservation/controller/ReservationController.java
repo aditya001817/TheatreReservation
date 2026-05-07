@@ -2,6 +2,7 @@ package com.theatre.reservation.controller;
 
 import com.theatre.reservation.dto.ApiResponseDto;
 import com.theatre.reservation.dto.ReservationRequestDto;
+import com.theatre.reservation.service.ReservationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,12 @@ import java.time.LocalDateTime;
 @RestController
 @RequestMapping("/api/v1/reservations")
 public class ReservationController {
+
+    private final ReservationService reservationService;
+
+    public ReservationController(ReservationService reservationService) {
+        this.reservationService = reservationService;
+    }
 
     @GetMapping("/user/all")
     public ResponseEntity<ApiResponseDto> getAllReservationsForCurrentUser(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
