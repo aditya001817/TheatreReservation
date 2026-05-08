@@ -15,4 +15,8 @@ public class SeatLockManager {
     public ReentrantLock getLockForSeat(long seatId) {
         return seatLocks.computeIfAbsent(seatId , id -> new ReentrantLock());
     }
+
+    public void releaseLockForSeat(long seatId) {
+        seatLocks.remove(seatId);
+    }
 }
