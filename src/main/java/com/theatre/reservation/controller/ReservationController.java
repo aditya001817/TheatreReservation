@@ -3,8 +3,6 @@ package com.theatre.reservation.controller;
 import com.theatre.reservation.dto.ApiResponseDto;
 import com.theatre.reservation.dto.ReservationRequestDto;
 import com.theatre.reservation.entity.Reservation;
-import com.theatre.reservation.entity.User;
-import com.theatre.reservation.repository.UserRepository;
 import com.theatre.reservation.service.ReservationService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -12,18 +10,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/v1/reservations")
 public class ReservationController {
 
     private final ReservationService reservationService;
-    private final UserRepository userRepository;
 
-    public ReservationController(ReservationService reservationService, UserRepository userRepository) {
+    public ReservationController(ReservationService reservationService) {
         this.reservationService = reservationService;
-        this.userRepository = userRepository;
     }
 
     @GetMapping("/user/all")
