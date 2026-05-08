@@ -2,9 +2,13 @@ package com.theatre.reservation.controller;
 
 import com.theatre.reservation.dto.ApiResponseDto;
 import com.theatre.reservation.dto.ReservationRequestDto;
+import com.theatre.reservation.entity.Reservation;
+import com.theatre.reservation.entity.User;
+import com.theatre.reservation.repository.UserRepository;
 import com.theatre.reservation.service.ReservationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -14,9 +18,11 @@ import java.time.LocalDateTime;
 public class ReservationController {
 
     private final ReservationService reservationService;
+    private final UserRepository userRepository;
 
-    public ReservationController(ReservationService reservationService) {
+    public ReservationController(ReservationService reservationService, UserRepository userRepository) {
         this.reservationService = reservationService;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/user/all")
@@ -44,7 +50,14 @@ public class ReservationController {
     @GetMapping("/reservation/{reservationId}")
     public ResponseEntity<ApiResponseDto> getReservationById(@PathVariable long reservationId) {
         System.out.println("Getting Reservation by id "+reservationId);
-        return null;
+        String currentUsername = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Reservation reservation = reservationService.getReservationById(currentUsername, reservationId);
+        return ResponseEntity.ok(
+                ApiResponseDto.builder()
+                        .message("Fetching reservation for reservationId "+reservationId)
+                        .data(reservation)
+                        .build()
+        );
     }
 
     @DeleteMapping("/cancel/{reservationId}")
