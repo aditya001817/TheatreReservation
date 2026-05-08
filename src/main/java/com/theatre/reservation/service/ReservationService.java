@@ -2,14 +2,20 @@ package com.theatre.reservation.service;
 
 import com.theatre.reservation.dto.ReservationRequestDto;
 import com.theatre.reservation.entity.Reservation;
+import com.theatre.reservation.exception.ReservationNotFoundException;
+import com.theatre.reservation.exception.UnAuthorizedException;
 import com.theatre.reservation.repository.ReservationRepository;
 import com.theatre.reservation.repository.SeatRepository;
 import com.theatre.reservation.repository.UserRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+
+import static com.theatre.reservation.constant.ExceptionMessages.RESERVATION_NOT_FOUND;
+import static com.theatre.reservation.constant.ExceptionMessages.UNAUTHORIZED_USER;
 
 @Service
 public class ReservationService {
@@ -41,9 +47,15 @@ public class ReservationService {
         return null;
     }
 
-    public Reservation getReservationById(long reservationId) {
+    public Reservation getReservationById(String currentUsername, long reservationId) {
         System.out.println("Into Service Layer");
-        return null;
+        Reservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new ReservationNotFoundException(RESERVATION_NOT_FOUND, HttpStatus.NOT_FOUND));
+
+        if(!reservation.getUser().getUsername().equals(currentUsername)) {
+            throw new UnAuthorizedException(UNAUTHORIZED_USER, HttpStatus.NOT_FOUND);
+        }
+        return reservation;
     }
 
     public Page<Reservation> filterReservation(Long movieId, Long theaterId, Long userId, String reservationStatus, String createdDate) {

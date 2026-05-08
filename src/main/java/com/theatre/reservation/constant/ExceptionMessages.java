@@ -6,4 +6,6 @@ public interface ExceptionMessages {
     String SEAT_NOT_FOUND = "Seat not found";
     String SHOW_NOT_FOUND = "Show not found";
     String USER_NOT_FOUND = "Username not found";
+    String RESERVATION_NOT_FOUND = "Reservation not found";
+    String UNAUTHORIZED_USER = "User not Authorized";
 }
