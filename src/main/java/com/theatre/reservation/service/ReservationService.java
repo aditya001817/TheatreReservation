@@ -17,11 +17,13 @@ public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final SeatRepository seatRepository;
     private final UserRepository userRepository;
+    private final SeatLockManager seatLockManager;
 
-    public ReservationService(ReservationRepository reservationRepository, SeatRepository seatRepository, UserRepository userRepository) {
+    public ReservationService(ReservationRepository reservationRepository, SeatRepository seatRepository, UserRepository userRepository, SeatLockManager seatLockManager) {
         this.reservationRepository = reservationRepository;
         this.seatRepository = seatRepository;
         this.userRepository = userRepository;
+        this.seatLockManager = seatLockManager;
     }
 
     public void cancelReservation(long reservationId) {
