@@ -8,6 +8,7 @@ import com.theatre.reservation.repository.ReservationRepository;
 import com.theatre.reservation.repository.SeatRepository;
 import com.theatre.reservation.repository.UserRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,9 +38,9 @@ public class ReservationService {
         reservationRepository.deleteById(reservationId);
     }
 
-    public Page<Reservation> getAllReservationsForCurrentUser(int page, int size) {
+    public Page<Reservation> getAllReservationsForCurrentUser(String username, int page, int size) {
         System.out.println("Into Service Layer");
-        return null;
+        return reservationRepository.findByUsername(username, PageRequest.of(page, size));
     }
 
     public Reservation createReservation(ReservationRequestDto reservationRequestDto) {
