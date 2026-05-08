@@ -12,5 +12,7 @@ public class SeatLockManager {
 
     private ConcurrentHashMap<Long, ReentrantLock> seatLocks = new ConcurrentHashMap<>();
 
-    public
+    public ReentrantLock getLockForSeat(long seatId) {
+        return seatLocks.computeIfAbsent(seatId , id -> new ReentrantLock());
+    }
 }
