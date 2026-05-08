@@ -6,6 +6,7 @@ import com.theatre.reservation.entity.Reservation;
 import com.theatre.reservation.entity.User;
 import com.theatre.reservation.repository.UserRepository;
 import com.theatre.reservation.service.ReservationService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -55,6 +56,20 @@ public class ReservationController {
         return ResponseEntity.ok(
                 ApiResponseDto.builder()
                         .message("Fetching reservation for reservationId "+reservationId)
+                        .data(reservation)
+                        .build()
+        );
+    }
+
+    @GetMapping("/reservation/{username}")
+    public ResponseEntity<ApiResponseDto> getReservationById(@PathVariable String username,
+                                                             @RequestParam(defaultValue = "0") int page,
+                                                             @RequestParam(defaultValue = "5") int size) {
+        System.out.println("Getting Reservation by username "+username);
+        Page<Reservation> reservation = reservationService.getReservationByUsername(username, page, size);
+        return ResponseEntity.ok(
+                ApiResponseDto.builder()
+                        .message("Fetching reservation for username "+username)
                         .data(reservation)
                         .build()
         );

@@ -59,6 +59,19 @@ public class ReservationService {
         return reservation;
     }
 
+
+    public Page<Reservation> getReservationByUsername(String currentUsername, int page, int size) {
+        System.out.println("Into Service Layer");
+//        Page<Reservation> reservation = reservationRepository.findByUsername(currentUsername, PageRequest.of(page, size))
+//                .orElseThrow(() -> new ReservationNotFoundException(RESERVATION_NOT_FOUND, HttpStatus.NOT_FOUND));
+
+//        if(!reservation.getUser().getUsername().equals(currentUsername)) {
+//            throw new UnAuthorizedException(UNAUTHORIZED_USER, HttpStatus.NOT_FOUND);
+//        }
+        return reservationRepository.findByUsername(currentUsername, PageRequest.of(page, size))
+                .orElseThrow(() -> new ReservationNotFoundException(RESERVATION_NOT_FOUND, HttpStatus.NOT_FOUND));;
+    }
+
     public Page<Reservation> filterReservation(Long movieId, Long theaterId, Long userId, String reservationStatus, String createdDate) {
         System.out.println("Into Service Layer");
         return null;
