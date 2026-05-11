@@ -30,7 +30,13 @@ public class ReservationController {
     @PostMapping("/reserve")
     public ResponseEntity<ApiResponseDto> createReservation(@RequestParam ReservationRequestDto reservationRequestDto) {
         System.out.println("Creating new Reservation");
-        return null;
+        Reservation reservation = reservationService.createReservation(reservationRequestDto);
+        return ResponseEntity.ok(
+                ApiResponseDto.builder()
+                        .message("Creating Reservation")
+                        .data(reservation)
+                        .build()
+        );
     }
 
     @GetMapping("/filter")
