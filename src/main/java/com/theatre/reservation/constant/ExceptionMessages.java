@@ -8,4 +8,5 @@ public interface ExceptionMessages {
     String USER_NOT_FOUND = "Username not found";
     String RESERVATION_NOT_FOUND = "Reservation not found";
     String UNAUTHORIZED_USER = "User not Authorized";
+    String SHOW_STARTED_EXCEPTION = "Show Already Started";
 }

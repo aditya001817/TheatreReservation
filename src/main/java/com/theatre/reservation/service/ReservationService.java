@@ -3,7 +3,9 @@ package com.theatre.reservation.service;
 import com.theatre.reservation.dto.ReservationRequestDto;
 import com.theatre.reservation.entity.Reservation;
 import com.theatre.reservation.enums.ReservationStatus;
+import com.theatre.reservation.enums.SeatStatus;
 import com.theatre.reservation.exception.ReservationNotFoundException;
+import com.theatre.reservation.exception.ShowAlreadyStartedException;
 import com.theatre.reservation.exception.UnAuthorizedException;
 import com.theatre.reservation.repository.ReservationRepository;
 import com.theatre.reservation.repository.SeatRepository;
@@ -12,8 +14,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import static com.theatre.reservation.constant.ExceptionMessages.RESERVATION_NOT_FOUND;
-import static com.theatre.reservation.constant.ExceptionMessages.UNAUTHORIZED_USER;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+
+import static com.theatre.reservation.constant.ExceptionMessages.*;
 
 @Service
 public class ReservationService {
@@ -30,9 +35,25 @@ public class ReservationService {
         this.seatLockManager = seatLockManager;
     }
 
-    public void cancelReservation(long reservationId) {
+    @Transactional
+    public Reservation cancelReservation(long reservationId) {
         System.out.println("Into Service Layer");
-        reservationRepository.deleteById(reservationId);
+        return reservationRepository.findById(reservationId)
+                .map(reservation -> {
+                    // 1. Check Time
+                    if(LocalDateTime.now().isAfter(reservation.getShow().getStartTime())) {
+                        throw new ShowAlreadyStartedException(SHOW_STARTED_EXCEPTION, HttpStatus.BAD_REQUEST);
+                    }
+                    // 2. Free Seats
+                    reservation.getSeatsReserved().forEach(seat -> seat.setStatus(SeatStatus.UNBOOKED));
+                    seatRepository.saveAll(reservation.getSeatsReserved());
+                    reservation.getSeatsReserved().clear();
+
+                    // 3. Updated reservation status
+                    reservation.setReservationStatus(ReservationStatus.CANCELED);
+
+
+                })
     }
 
     public Page<Reservation> getAllReservationsForCurrentUser(String username, int page, int size) {
