@@ -51,9 +51,9 @@ public class ReservationService {
 
                     // 3. Updated reservation status
                     reservation.setReservationStatus(ReservationStatus.CANCELED);
-
-
+        return reservationRepository.save(reservation);
                 })
+                .orElseThrow(() -> new ReservationNotFoundException(RESERVATION_NOT_FOUND, HttpStatus.NOT_FOUND));
     }
 
     public Page<Reservation> getAllReservationsForCurrentUser(String username, int page, int size) {
