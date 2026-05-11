@@ -2,6 +2,7 @@ package com.theatre.reservation.service;
 
 import com.theatre.reservation.dto.ReservationRequestDto;
 import com.theatre.reservation.entity.Reservation;
+import com.theatre.reservation.enums.ReservationStatus;
 import com.theatre.reservation.exception.ReservationNotFoundException;
 import com.theatre.reservation.exception.UnAuthorizedException;
 import com.theatre.reservation.repository.ReservationRepository;
@@ -11,10 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
-
 import static com.theatre.reservation.constant.ExceptionMessages.RESERVATION_NOT_FOUND;
 import static com.theatre.reservation.constant.ExceptionMessages.UNAUTHORIZED_USER;
 
@@ -62,19 +59,13 @@ public class ReservationService {
 
     public Page<Reservation> getReservationByUsername(String currentUsername, int page, int size) {
         System.out.println("Into Service Layer");
-//        Page<Reservation> reservation = reservationRepository.findByUsername(currentUsername, PageRequest.of(page, size))
-//                .orElseThrow(() -> new ReservationNotFoundException(RESERVATION_NOT_FOUND, HttpStatus.NOT_FOUND));
-
-//        if(!reservation.getUser().getUsername().equals(currentUsername)) {
-//            throw new UnAuthorizedException(UNAUTHORIZED_USER, HttpStatus.NOT_FOUND);
-//        }
-        return reservationRepository.findByUsername(currentUsername, PageRequest.of(page, size))
-                .orElseThrow(() -> new ReservationNotFoundException(RESERVATION_NOT_FOUND, HttpStatus.NOT_FOUND));;
+        return reservationRepository.findByUsername(currentUsername, PageRequest.of(page, size));
     }
 
-    public Page<Reservation> filterReservation(Long movieId, Long theaterId, Long userId, String reservationStatus, String createdDate) {
+    public Page<Reservation> filterReservation(Long movieId, Long theaterId, Long userId, String reservationStatus, String createdDate, int page, int size) {
         System.out.println("Into Service Layer");
-        return null;
+        ReservationStatus reStatus = ReservationStatus.valueOf(reservationStatus);
+        return reservationRepository.filterReservation(movieId, theaterId, userId, reStatus, PageRequest.of(page, size));
     }
 
 }
