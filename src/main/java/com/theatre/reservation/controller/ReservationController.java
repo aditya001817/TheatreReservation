@@ -25,7 +25,7 @@ public class ReservationController {
     public ResponseEntity<ApiResponseDto> getAllReservationsForCurrentUser(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
         System.out.println("Getting all reservations for current User ");
         String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
-        Page<Reservation> reservations = getAllReservationsForCurrentUser(currentUsername, page, size);
+        Page<Reservation> reservations = reservationService.getAllReservationsForCurrentUser(currentUsername, page, size);
         return ResponseEntity.ok(
                 ApiResponseDto
                         .builder()
