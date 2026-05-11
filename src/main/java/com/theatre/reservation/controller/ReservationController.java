@@ -38,9 +38,17 @@ public class ReservationController {
                                                             @RequestParam(required = false) long theaterId,
                                                             @RequestParam(required = false) long userId,
                                                             @RequestParam(defaultValue = "BOOKED") String reservationStatus,
-                                                            @RequestParam(required = false) String createdDate) {
+                                                            @RequestParam(required = false) String createdDate,
+                                                            @RequestParam(defaultValue = "0") int page,
+                                                            @RequestParam(defaultValue = "5") int size) {
         System.out.println("Filtering Reservations ");
-        return  null;
+        Page<Reservation> filtered = reservationService.filterReservation(movieId, theaterId, userId, reservationStatus, createdDate, page, size);
+        return  ResponseEntity.ok(
+                ApiResponseDto.builder()
+                        .message("Filtering Reservations")
+                        .data(filtered)
+                        .build()
+        );
     }
 
     @GetMapping("/reservation/{reservationId}")
