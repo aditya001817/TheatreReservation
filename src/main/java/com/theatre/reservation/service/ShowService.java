@@ -66,6 +66,13 @@ public class ShowService {
 
     public Show createNewShow(ShowRequestDto showRequestDto) {
         System.out.println("Creating new Show");
+        if (showRequestDto.getMovieId() == null) {
+            throw new MovieNotFoundException(MOVIE_NOT_FOUND, HttpStatus.BAD_REQUEST);
+        }
+        if (showRequestDto.getTheaterId() == null) {
+            throw new TheaterNotFoundException(THEATER_NOT_FOUND, HttpStatus.BAD_REQUEST);
+        }
+
         Movie movie = movieRepository.findById(showRequestDto.getMovieId())
                 .orElseThrow(() -> new MovieNotFoundException(MOVIE_NOT_FOUND, HttpStatus.BAD_REQUEST));
 

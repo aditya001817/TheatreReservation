@@ -60,7 +60,7 @@ public class ReservationService {
 
     public Page<Reservation> getAllReservationsForCurrentUser(String username, int page, int size) {
         System.out.println("Into Service Layer");
-        return reservationRepository.findByUsername(username, PageRequest.of(page, size));
+        return reservationRepository.findByUserUsername(username, PageRequest.of(page, size));
     }
 
     public Reservation createReservation(ReservationRequestDto reservationRequestDto) {
@@ -82,7 +82,7 @@ public class ReservationService {
 
     public Page<Reservation> getReservationByUsername(String currentUsername, int page, int size) {
         System.out.println("Into Service Layer");
-        return reservationRepository.findByUsername(currentUsername, PageRequest.of(page, size));
+        return reservationRepository.findByUserUsername(currentUsername, PageRequest.of(page, size));
     }
 
     public Page<Reservation> filterReservation(Long movieId, Long theaterId, Long userId, String reservationStatus, String createdDate, int page, int size) {

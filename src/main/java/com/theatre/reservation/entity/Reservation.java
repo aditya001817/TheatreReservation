@@ -25,10 +25,15 @@ public class Reservation {
     @ToString.Exclude
     private Show show;
 
-    @ManyToOne
+    @ManyToMany
+    @JoinTable(
+            name = "reservation_seats",
+            joinColumns = @JoinColumn(name = "reservation_id"),
+            inverseJoinColumns = @JoinColumn(name = "seat_id")
+    )
     @ToString.Exclude
-    List<Seat> seatsReserved;
-    double amountPaid;
+    private List<Seat> seatsReserved;
+    private double amountPaid;
 
     @Enumerated(value = EnumType.STRING)
     private ReservationStatus reservationStatus;

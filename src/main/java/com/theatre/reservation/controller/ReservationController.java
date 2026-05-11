@@ -95,7 +95,7 @@ public class ReservationController {
     @DeleteMapping("/cancel/{reservationId}")
     public ResponseEntity<?> cancelReservation(@PathVariable long reservationId) {
         System.out.println("Canceling Reservation for ReservationId" +reservationId);
-        reservationService.cancelReservation(reservationId);
+        Reservation reservation = reservationService.cancelReservation(reservationId);
         return ResponseEntity
                 .status(HttpStatus.NO_CONTENT)
                 .build();
