@@ -71,12 +71,8 @@ public class ReservationService {
         System.out.println("Into Service Layer");
 
         //GET SHOW
-        Show show = showRepository.findById(reservationRequestDto.getShowId())
-                .orElseThrow(() -> new ShowNotFoundException(SHOW_NOT_FOUND, HttpStatus.BAD_REQUEST));
-
-        //LOCK ALL SELECTED SEAT
-
-        return null;
+        return showRepository.findById(reservationRequestDto.getShowId())
+                .map()
     }
 
     public Reservation getReservationById(String currentUsername, long reservationId) {
