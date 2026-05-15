@@ -3,10 +3,12 @@ package com.theatre.reservation.service;
 import com.theatre.reservation.dto.ReservationRequestDto;
 import com.theatre.reservation.entity.Movie;
 import com.theatre.reservation.entity.Reservation;
+import com.theatre.reservation.entity.Show;
 import com.theatre.reservation.enums.ReservationStatus;
 import com.theatre.reservation.enums.SeatStatus;
 import com.theatre.reservation.exception.ReservationNotFoundException;
 import com.theatre.reservation.exception.ShowAlreadyStartedException;
+import com.theatre.reservation.exception.ShowNotFoundException;
 import com.theatre.reservation.exception.UnAuthorizedException;
 import com.theatre.reservation.repository.*;
 import org.springframework.data.domain.Page;
@@ -68,7 +70,8 @@ public class ReservationService {
     public Reservation createReservation(ReservationRequestDto reservationRequestDto) {
         System.out.println("Into Service Layer");
 
-        Movie movie = movieRepository
+        Show show = showRepository.findById(reservationRequestDto.getShowId())
+                .orElseThrow(() -> new ShowNotFoundException(SHOW_NOT_FOUND, HttpStatus.BAD_REQUEST));
         return null;
     }
 
