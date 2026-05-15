@@ -70,8 +70,12 @@ public class ReservationService {
     public Reservation createReservation(ReservationRequestDto reservationRequestDto) {
         System.out.println("Into Service Layer");
 
+        //GET SHOW
         Show show = showRepository.findById(reservationRequestDto.getShowId())
                 .orElseThrow(() -> new ShowNotFoundException(SHOW_NOT_FOUND, HttpStatus.BAD_REQUEST));
+
+        //LOCK ALL SELECTED SEAT
+
         return null;
     }
 
