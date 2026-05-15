@@ -1,15 +1,14 @@
 package com.theatre.reservation.service;
 
 import com.theatre.reservation.dto.ReservationRequestDto;
+import com.theatre.reservation.entity.Movie;
 import com.theatre.reservation.entity.Reservation;
 import com.theatre.reservation.enums.ReservationStatus;
 import com.theatre.reservation.enums.SeatStatus;
 import com.theatre.reservation.exception.ReservationNotFoundException;
 import com.theatre.reservation.exception.ShowAlreadyStartedException;
 import com.theatre.reservation.exception.UnAuthorizedException;
-import com.theatre.reservation.repository.ReservationRepository;
-import com.theatre.reservation.repository.SeatRepository;
-import com.theatre.reservation.repository.UserRepository;
+import com.theatre.reservation.repository.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -27,12 +26,14 @@ public class ReservationService {
     private final SeatRepository seatRepository;
     private final UserRepository userRepository;
     private final SeatLockManager seatLockManager;
+    private final ShowRepository showRepository;
 
-    public ReservationService(ReservationRepository reservationRepository, SeatRepository seatRepository, UserRepository userRepository, SeatLockManager seatLockManager) {
+    public ReservationService(ReservationRepository reservationRepository, SeatRepository seatRepository, UserRepository userRepository, SeatLockManager seatLockManager, ShowRepository showRepository) {
         this.reservationRepository = reservationRepository;
         this.seatRepository = seatRepository;
         this.userRepository = userRepository;
         this.seatLockManager = seatLockManager;
+        this.showRepository = showRepository;
     }
 
     @Transactional
@@ -63,8 +64,11 @@ public class ReservationService {
         return reservationRepository.findByUserUsername(username, PageRequest.of(page, size));
     }
 
+    @Transactional
     public Reservation createReservation(ReservationRequestDto reservationRequestDto) {
         System.out.println("Into Service Layer");
+
+        Movie movie = movieRepository
         return null;
     }
 
