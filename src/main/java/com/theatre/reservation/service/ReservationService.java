@@ -77,6 +77,13 @@ public class ReservationService {
                             .map(seatRepository::findById)
                             .map(Optional::get)
                             .toList();
+
+                    //CALCULATE AMOUNT
+                    double amountTOBePaid = seats.stream().map(Seat::getPrice).reduce(0.0, Double::sum);
+
+                    if(reservationRequestDto.getAmount() != amountTOBePaid) {
+                        throw new AmountNotMatchedException(AMOUNT_NOT_MATCHED, HttpStatus.BAD_REQUEST);
+                    }
                 })
     }
 
