@@ -1,9 +1,7 @@
 package com.theatre.reservation.service;
 
 import com.theatre.reservation.dto.ReservationRequestDto;
-import com.theatre.reservation.entity.Movie;
-import com.theatre.reservation.entity.Reservation;
-import com.theatre.reservation.entity.Show;
+import com.theatre.reservation.entity.*;
 import com.theatre.reservation.enums.ReservationStatus;
 import com.theatre.reservation.enums.SeatStatus;
 import com.theatre.reservation.exception.ReservationNotFoundException;
@@ -18,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 import static com.theatre.reservation.constant.ExceptionMessages.*;
 
@@ -72,7 +72,14 @@ public class ReservationService {
 
         //GET SHOW
         return showRepository.findById(reservationRequestDto.getShowId())
-                .map()
+                .map(show -> {
+                    List<Seat> seats = reservationRequestDto
+                            .getSeatIdsReserve()
+                            .stream()
+                            .map(seatRepository::findById)
+                            .map(Optional::get)
+                            .toList();
+                })
     }
 
     public Reservation getReservationById(String currentUsername, long reservationId) {
