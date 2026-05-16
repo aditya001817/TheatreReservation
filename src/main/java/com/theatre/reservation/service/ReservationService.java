@@ -91,6 +91,15 @@ public class ReservationService {
                             throw new SeatLockAquiredException(SEAT_ACCQUIRED, HttpStatus.CONFLICT);
                         }
                     });
+
+                    //CHECK FOR ANY PRE BOOKED SEAT
+                    Boolean bookedSeat = seats.stream().map(Seat::getStatus).anyMatch(seatStatus -> seatStatus.equals(SeatStatus.BOOKED));
+
+                    //IF ANY SEAT IS ALREADY BOOKED THEN REMOVE LOCK FOR ALL SEATS
+                    if(bookedSeat) {
+                        seats.forEach(seat -> {seatLockManager.releaseLockForSeat(seat.getId());});
+                        throw new SeatAlreadyBookedException(SEAT_ALREADY_BOOKED , HttpStatus.CONFLICT);
+                    }
                 });
     }
 
