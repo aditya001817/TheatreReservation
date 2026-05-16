@@ -88,7 +88,7 @@ public class ReservationService {
                         ReentrantLock lock = seatLockManager.getLockForSeat(seat.getId());
                         boolean isLocked = lock.tryLock();
                         if(!isLocked) {
-                            throw new SeatLockAquiredException(SEAT_ACCQUIRED, HttpStatus.CONFLICT);
+                            throw new SeatLockAquiredException(SEAT_ACQUIRED, HttpStatus.CONFLICT);
                         }
                     });
 
