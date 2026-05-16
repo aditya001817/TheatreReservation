@@ -69,8 +69,6 @@ public class ReservationService {
     @Transactional
     public Reservation createReservation(ReservationRequestDto reservationRequestDto) {
         System.out.println("Into Service Layer");
-
-        //GET SHOW
         return showRepository.findById(reservationRequestDto.getShowId())
                 .map(show -> {
                     List<Seat> seats = reservationRequestDto
