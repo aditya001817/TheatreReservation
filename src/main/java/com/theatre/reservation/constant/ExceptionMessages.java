@@ -9,4 +9,5 @@ public interface ExceptionMessages {
     String RESERVATION_NOT_FOUND = "Reservation not found";
     String UNAUTHORIZED_USER = "User not Authorized";
     String SHOW_STARTED_EXCEPTION = "Show Already Started";
+    String AMOUNT_NOT_MATCHED = "Amount not matched with the Estimated amount to be Paid";
 }
