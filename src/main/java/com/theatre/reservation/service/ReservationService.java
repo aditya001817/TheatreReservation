@@ -100,6 +100,22 @@ public class ReservationService {
                         seats.forEach(seat -> {seatLockManager.releaseLockForSeat(seat.getId());});
                         throw new SeatAlreadyBookedException(SEAT_ALREADY_BOOKED , HttpStatus.CONFLICT);
                     }
+
+                    //  MARK ALL SEATS AS BOOKED
+                    List<Seat> bookedSeats = seats.stream().map(seat -> {
+                        seat.setStatus(SeatStatus.BOOKED);
+                        return seatRepository.save(seat);
+                    })
+                            .toList();
+
+                    Reservation reservation = Reservation.builder()
+                            .reservationStatus(ReservationStatus.BOOKED)
+                            .seatsReserved(seats)
+                            .show(show)
+                            .user(userRepository.findByUsername(currentUsername).get)
+                            .amountPaid(reservationRequestDto.getAmount())
+                            .createdAt(LocalDateTime.now())
+                            .build();
                 });
     }
 
