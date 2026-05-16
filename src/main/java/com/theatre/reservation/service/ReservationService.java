@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.locks.ReentrantLock;
 
 import static com.theatre.reservation.constant.ExceptionMessages.*;
 
@@ -81,7 +82,16 @@ public class ReservationService {
                     if(reservationRequestDto.getAmount() != amountTOBePaid) {
                         throw new AmountNotMatchedException(AMOUNT_NOT_MATCHED, HttpStatus.BAD_REQUEST);
                     }
-                })
+
+                    //GET ALL SELECTED SEATS LOCKED
+                    seats.forEach(seat -> {
+                        ReentrantLock lock = seatLockManager.getLockForSeat(seat.getId());
+                        boolean isLocked = lock.tryLock();
+                        if(!isLocked) {
+                            throw new SeatLockAquiredException(SEAT_ACCQUIRED, HttpStatus.CONFLICT);
+                        }
+                    });
+                });
     }
 
     public Reservation getReservationById(String currentUsername, long reservationId) {
