@@ -10,4 +10,5 @@ public interface ExceptionMessages {
     String UNAUTHORIZED_USER = "User not Authorized";
     String SHOW_STARTED_EXCEPTION = "Show Already Started";
     String AMOUNT_NOT_MATCHED = "Amount not matched with the Estimated amount to be Paid";
+    String SEAT_ACCQUIRED = "Seat Lock Already Acquired";
 }
