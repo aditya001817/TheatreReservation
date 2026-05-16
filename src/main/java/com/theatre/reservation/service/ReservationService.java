@@ -9,6 +9,7 @@ import com.theatre.reservation.repository.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -108,11 +109,13 @@ public class ReservationService {
                     })
                             .toList();
 
+                    String currentUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+
                     Reservation reservation = Reservation.builder()
                             .reservationStatus(ReservationStatus.BOOKED)
-                            .seatsReserved(seats)
+                            .seatsReserved(bookedSeats)
                             .show(show)
-                            .user(userRepository.findByUsername(currentUsername).get)
+                            .user(userRepository.findByUsername(currentUsername).get())
                             .amountPaid(reservationRequestDto.getAmount())
                             .createdAt(LocalDateTime.now())
                             .build();
