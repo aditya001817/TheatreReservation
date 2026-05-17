@@ -120,8 +120,11 @@ public class ReservationService {
                             .createdAt(LocalDateTime.now())
                             .build();
 
+                    seats.forEach(seat -> seatLockManager.releaseLockForSeat(seat.getId()));
 
-                });
+                    return reservationRepository.save(reservation);
+                })
+                .orElseThrow(() -> new ShowNotFoundException(SHOW_NOT_FOUND, HttpStatus.BAD_REQUEST));
     }
 
     public Reservation getReservationById(String currentUsername, long reservationId) {
